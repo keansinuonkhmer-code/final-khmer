@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ប្រព័ន្ធសិក្សា និងប្រឡងប្រវត្តិសាស្ត្រខ្មែរ (កំណែទម្រង់ពេញលេញ V3 - ៥០ សំណួរ QCM)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #2563eb;
+            --secondary: #d97706;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #cbd5e1;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --purple: #7c3aed;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Kantumruy Pro', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            font-size: 2.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fbbf24;
+        }
+
+        header p {
+            font-size: 1.08rem;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 25px auto;
+            padding: 0 15px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            font-size: 0.98rem;
+            font-weight: 600;
+            border: none;
+            background-color: #e2e8f0;
+            color: var(--text-muted);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .chapter-full-card {
+            background: white;
+            border-radius: 14px;
+            padding: 32px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
+            border-left: 8px solid var(--primary-light);
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px dashed #cbd5e1;
+        }
+
+        .section-h3 {
+            font-size: 1.22rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 22px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        p.narrative {
+            margin-bottom: 12px;
+            text-align: justify;
+            text-justify: inter-word;
+            font-size: 1.02rem;
+            color: #1e293b;
+        }
+
+        ul.detail-list, ol.detail-list {
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        ul.detail-list li, ol.detail-list li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #334155;
+        }
+
+        .story-highlight {
+            background: #f0f9ff;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 18px 0;
+            border: 1px solid #bae6fd;
+            border-left: 5px solid var(--primary-light);
+            font-size: 0.99rem;
+        }
+
+        .story-highlight strong {
+            color: var(--primary);
+        }
+
+        .timer-bar {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            background: #ffffff;
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+
+        .timer-title { font-weight: 700; color: var(--secondary); font-size: 1.05rem; }
+        .timer-clock { font-size: 1.5rem; font-weight: 800; color: var(--danger); }
+
+        .chapter-filter {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+        }
+
+        .filter-chip {
+            padding: 8px 18px;
+            border-radius: 20px;
+            background: white;
+            border: 1px solid var(--border-color);
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .filter-chip.active, .filter-chip:hover {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-light);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .chapter-badge {
+            background: #eff6ff;
+            color: var(--primary);
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        .q-number { font-size: 0.95rem; font-weight: 700; color: var(--secondary); }
+        .q-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 18px; color: var(--text-main); }
+
+        .options-group { display: flex; flex-direction: column; gap: 12px; }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option-item:hover { background-color: #f1f5f9; }
+        .option-item input { margin-right: 14px; transform: scale(1.3); cursor: pointer; }
+
+        .solution-box {
+            margin-top: 18px;
+            padding: 16px;
+            background-color: #f0fdf4;
+            border-left: 5px solid var(--success);
+            border-radius: 6px;
+            display: none;
+        }
+
+        .btn-submit {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 25px;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover { background-color: #15803d; }
+
+        .result-summary {
+            display: none;
+            text-align: center;
+            padding: 35px 25px;
+            background: white;
+            border-radius: 14px;
+            margin-top: 30px;
+        }
+
+        .score-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 auto 20px auto;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 1.05rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        .keyword-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        .kw-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px;
+            border-top: 4px solid var(--primary-light);
+        }
+
+        .kw-term { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+        .kw-def { font-size: 0.98rem; color: var(--text-main); }
+
+        .matching-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 16px;
+            padding: 16px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            align-items: center;
+        }
+
+        .matching-select {
+            padding: 10px 14px;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.5rem; }
+            .tab-btn { padding: 10px 14px; font-size: 0.88rem; }
+            .matching-item { grid-template-columns: 1fr; }
+            .chapter-full-card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ប្រព័ន្ធសិក្សា និងប្រឡងប្រវត្តិសាស្ត្រខ្មែរ (កំណែទម្រង់ V3 - ៥០ សំណួរ QCM)</h1>
+        <p>អត្ថបទមេរៀនពិស្តារពេញលេញជំពូកទី១ ដល់ ទី៨, ៥០ សំណួរប្រឡង QCM, ៣១ ពាក្យគន្លឹះ និងលំហាត់ផ្គូផ្គង</p>
+    </header>
+
+    <div class="container">
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchMode('full-lessons')">📖 មេរៀនពេញលេញ (Full Lessons)</button>
+            <button class="tab-btn" onclick="switchMode('exam')">📝 ទម្រង់ប្រឡង (Exam Mode - 50 QCM)</button>
+            <button class="tab-btn" onclick="switchMode('study')">📚 ស្វ័យសិក្សា (Study Mode)</button>
+            <button class="tab-btn" onclick="switchMode('glossary')">🔑 ពាក្យគន្លឹះ (Glossary)</button>
+            <button class="tab-btn" onclick="switchMode('matching')">🧩 ផ្គូផ្គងពាក្យ (Matching)</button>
+        </div>
+
+        <!-- FULL LESSONS SECTION -->
+        <div id="section-full-lessons">
+            <div class="chapter-filter" style="margin-bottom:20px;">
+                <button class="filter-chip active" onclick="filterFullLesson('all')">ទាំងអស់ (ជំពូក ១-៨)</button>
+                <button class="filter-chip" onclick="filterFullLesson(1)">ជំពូក ១</button>
+                <button class="filter-chip" onclick="filterFullLesson(2)">ជំពូក ២</button>
+                <button class="filter-chip" onclick="filterFullLesson(3)">ជំពូក ៣</button>
+                <button class="filter-chip" onclick="filterFullLesson(4)">ជំពូក ៤</button>
+                <button class="filter-chip" onclick="filterFullLesson(5)">ជំពូក ៥</button>
+                <button class="filter-chip" onclick="filterFullLesson(6)">ជំពូក ៦</button>
+                <button class="filter-chip" onclick="filterFullLesson(7)">ជំពូក ៧</button>
+                <button class="filter-chip" onclick="filterFullLesson(8)">ជំពូក ៨</button>
+            </div>
+
+            <div id="full-lessons-container">
+                <!-- Chapter 1 Full -->
+                <div class="chapter-full-card" data-chap="1">
+                    <div class="chapter-title">📘 ជំពូកទី១ ៖ មជ្ឈដ្ឋានភូមិសាស្ត្រ និងដើមកំណើតជាតិខ្មែរ</div>
+                    
+                    <div class="section-h3">១. និយមន័យ និងអត្ថប្រយោជន៍នៃការសិក្សាប្រវត្តិសាស្ត្រ</div>
+                    <p class="narrative">
+                        <b>ប្រវត្តិសាស្ត្រ</b> គឺជាវិទ្យាសាស្ត្រសង្គមមួយដែលសិក្សាស្រាវជ្រាវ និងកត់ត្រាអំពីព្រឹត្តិការណ៍ សកម្មភាព និងការវិវត្តរបស់មនុស្សជាតិនៅក្នុងអតីតកាល។ ការសិក្សាប្រវត្តិសាស្ត្រមិនមែនគ្រាន់តែជាការចងចាំឆ្នាំ ឬឈ្មោះស្តេចនោះទេ ប៉ុន្តែវាគ្របដណ្តប់លើការយល់ដឹងអំពីទិដ្ឋភាពសង្គម វប្បធម៌ សេដ្ឋកិច្ច នយោបាយ ទំនៀមទម្លាប់ ច្បាប់ សិល្បៈ ស្ថាបត្យកម្ម និងកម្រិតប្រាជ្ញាស្មារតីរបស់មនុស្សក្នុងសម័យកាលនីមួយៗ។
+                    </p>
+                    <div class="story-highlight">
+                        <strong>💡 អត្ថប្រយោជន៍ចម្បង ៥ យ៉ាងនៃការសិក្សាប្រវត្តិសាស្ត្រ៖</strong>
+                        <ol style="margin-top:8px; padding-left:20px;">
+                            <li><b>យល់ពីអត្តសញ្ញាណជាតិ៖</b> ជួយឱ្យប្រជាជនស្គាល់ពីឫសគល់ មរតក និងគុណតម្លៃរួមនៃជាតិសាសន៍ខ្លួន។</li>
+                            <li><b>រៀនសូត្រពីបទពិសោធន៍៖</b> ផ្តល់មេរៀនទាំងជោគជ័យ និងសោកនាដកម្មពីអតីតកាល ដើម្បីកែប្រែបច្ចុប្បន្ន និងជៀសវាងកំហុសឆ្គងដដែលៗ។</li>
+                            <li><b>អភិវឌ្ឍគំនិតពិចារណា (Critical Thinking)៖</b> បណ្តុះសមត្ថភាពវិភាគប្រភពព័ត៌មាន ស្វែងរកការពិត និងវាយតម្លៃព្រឹត្តិការណ៍ដោយហេតុផល។</li>
+                            <li><b>បង្កើតស្មារតីស្នេហាជាតិ៖</b> លើកកម្ពស់មោទនភាពជាតិ និងការទទួលខុសត្រូវក្នុងការថែរក្សាការពារទឹកដី និងវប្បធម៌ជាតិ។</li>
+                            <li><b>ផ្តល់កម្លាំងចិត្ត៖</b> ឃើញពីភាពអត់ធន់ និងភាពស្វាហាប់របស់បុព្វបុរសក្នុងការជម្នះឧបសគ្គដើម្បីសាងចក្រភព។</li>
+                        </ol>
+                    </div>
+
+                    <div class="section-h3">២. មជ្ឈដ្ឋានភូមិសាស្ត្រនៃប្រទេសកម្ពុជា</div>
+                    <p class="narrative">
+                        ប្រទេសកម្ពុជាស្ថិតនៅភាគអាគ្នេយ៍នៃទ្វីបអាស៊ី លើឧបទ្វីបឥណ្ឌូចិន (អាស៊ីអាគ្នេយ៍ដីគោក)។ ភូមិសាស្ត្រកម្ពុជាមានលក្ខណៈពិសេសអំណោយផលយ៉ាងខ្លាំងដល់ការកកើតអរិយធម៌បុរាណ ដោយសារតែ៖
+                    </p>
+                    <ul class="detail-list">
+                        <li><b>ប្រព័ន្ធធារាសាស្ត្រ និងដីល្បាប់៖</b> ទន្លេមេគង្គកាត់តាមកណ្តាលប្រទេស និងបឹងទន្លេសាបជាជម្រុកមច្ឆជាតិដ៏ធំជាងគេនៅអាស៊ីអាគ្នេយ៍។ នៅរដូវវស្សា ទឹកទន្លេមេគង្គហូរច្រកចូលបឹងទន្លេសាប នាំមកនូវដីល្បាប់មានជីជាតិ និងពង្រីកផ្ទៃទឹក បង្កើតបានជាប្រព័ន្ធស្រោចស្រពធម្មជាតិ។</li>
+                        <li><b>អាកាសធាតុ៖</b> ស្ថិតក្នុងតំបន់ក្តៅហើយសើម គ្របដណ្តប់ដោយខ្យល់រដូវ (មូសុង) ដោយចែកជាពីររដូវច្បាស់លាស់ គឺរដូវប្រាំង (វិច្ឆិកា-មេសា) និងរដូវវស្សា (ឧសភា-តុលា) ដែលអំណោយផលដល់ការធ្វើកសិកម្មស្រូវ។</li>
+                        <li><b>ជួរភ្នំ និងការការពារធម្មជាតិ៖</b> មានជួរភ្នំក្រវ៉ាញ និងជួរភ្នំដងរែក ជាកំផែងការពារធម្មជាតិពីខ្យល់ព្យុះ និងការឈ្លានពាន។</li>
+                    </ul>
+
+                    <div class="section-h3">៣. ដើមកំណើតជាតិខ្មែរ (លទ្ធផលស្រាវជ្រាវតាមបែបវិទ្យាសាស្ត្រ)</div>
+                    <p class="narrative">
+                        ការសិក្សាស្រាវជ្រាវតាមបែបនរវិទ្យា (Anthropology) និងភាសាសាស្ត្រ (Linguistics) បានបដិសេធទ្រឹស្តីចាស់ៗដែលចោទថាខ្មែរជាជនជាតិអន្តោប្រវេសន៍មកពីឥណ្ឌា ឬចិន។ ភស្តុតាងវិទ្យាសាស្ត្របានបញ្ជាក់ថា <b>ជាតិខ្មែរជាម្ចាស់ស្រុកដើម (Indigenous People)</b> ដែលបានរស់នៅលើដែនដីអាស៊ីអាគ្នេយ៍នេះតាំងពីសម័យបុរេប្រវត្តិសាស្ត្រមកម៉្លេះ។
+                    </p>
+                    <div class="story-highlight">
+                        <strong>🧬 ភស្តុតាងផ្នែកនរវិទ្យា (Anthropology)៖</strong>
+                        <ul style="margin-top:8px; padding-left:20px;">
+                            <li><b>សន្ទស្សន៍លលាដ៍ក្បាល៖</b> មនុស្សខ្មែរមានសន្ទស្សន៍លលាដ៍ក្បាលជាមធ្យម <b>៨៤.៥ (ក្បាលមូល - Brachycephalic)</b> ខុសស្រឡះពីឥណ្ឌាអារ្យ (សន្ទស្សន៍ ៧៣.៨ - ក្បាលពយ) និងឥណ្ឌាទ្រាវិឌ (សន្ទស្សន៍ ៧៦.២ - ក្បាលពយ)។</li>
+                            <li><b>រូបរាងកាយ៖</b> មានកម្ពស់ជាមធ្យម ១.៦១ម, សម្បុរស្រអែម, សក់ត្រង់/រលក, ច្រមុះមធ្យម, ក្រុមឈាម O និង B ភាគរយខ្ពស់។</li>
+                            <li><b>ផ្នែកភាសាសាស្ត្រ៖</b> ភាសាខ្មែរស្ថិតក្នុងអម្បូរភាសាខ្មែរ-មន (Austroasiatic Language Family)។</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chapter 2 Full -->
+                <div class="chapter-full-card" data-chap="2">
+                    <div class="chapter-title">📘 ជំពូកទី២ ៖ អម្បូរខ្មែរ-មន</div>
+                    
+                    <div class="section-h3">១. ការរស់នៅ និងដែនជម្រកនៃអម្បូរខ្មែរ-មន</div>
+                    <p class="narrative">
+                        អម្បូរខ្មែរ-មន (Mon-Khmer Group) គឺជាក្រុមគ្រួសារភាសា និងជនជាតិបុរាណដ៏ធំមួយដែលបានរស់នៅគ្របដណ្តប់លើដែនដីអាស៊ីអាគ្នេយ៍ដីគោក ចាប់ពីឥណ្ឌាភាគខាងកើត រហូតដល់សមុទ្រចិន និងចុះទៅភាគខាងត្បូង។ យោងតាមការសិក្សាស្រាវជ្រាវរបស់លោក លីនដា អេវ៉ាន់ (1964) នៅក្នុងសៀវភៅ <i>"Ethnic groups of mainland South-East Asia"</i> អម្បូរខ្មែរ-មន មានគ្នាទាំងអស់ <b>៧៦ ក្រុម/ជនជាតិ</b>។
+                    </p>
+
+                    <div class="section-h3">២. ទស្សនៈ និងដើមកំណើតពាក្យ «ខ្មែរ» និង «កម្ពុជា»</div>
+                    <p class="narrative">
+                        ប្រភពនៃការហៅឈ្មោះ «ខ្មែរ» និង «កម្ពុជា» មានការបកស្រាយតាមបែបប្រវត្តិសាស្ត្រ ភាសាសាស្ត្រ និងរឿងព្រេងយ៉ាងសម្បូរបែប៖
+                    </p>
+                    
+                    <div class="story-highlight">
+                        <strong>💡 ទស្សនៈរបស់លោកបណ្ឌិតសាស្ត្រាចារ្យ កេង វ៉ាន់សាក់៖</strong>
+                        <ul style="margin-top:8px; padding-left:20px;">
+                            <li><b>ពាក្យ «ខ្មែរ»៖</b> ក្លាយមកពីពាក្យផ្សំ <b>ក + មេ (កមេ > ក្មេ > ក្មេរ > ខ្មែរ)</b>។ ដោយសារសង្គមខ្មែរបុរាណប្រតិបត្តិតាមរបៀប <i>មាតាធិបតេយ្យ (Matriarchy)</i> ដែលទុកស្ត្រីជាធំ (មេផ្ទះ, មេភូមិ, មេទ័ព, មេឃុំ) ហើយបុព្វបទ «ក» បន្ថែមន័យឱ្យកាន់តែខ្លាំង ពោលគឺអ្នកដែលគោរព «មេ» យ៉ាងខ្ជាប់ខ្ជួន។</li>
+                            <li><b>ពាក្យ «កម្ពុជា»៖</b> ក្លាយមកពី <b>ក + ពូជជា (កពូជជា > កម្ពុជា)</b> មានន័យថា ពូជជា ពូជថ្លៃថ្នូរ ពូជដែលមានសេរីភាព មិនដែលត្រួតត្រា ឬធ្វើខ្ញុំកញ្ជះគេឡើយ។</li>
+                        </ul>
+                    </div>
+
+                    <p class="narrative">
+                        <b>ទស្សនៈតាមសិលាចារឹក និងប្រភពឥណ្ឌា៖</b> ពាក្យ «កម្ពុជា» មកពីឈ្មោះតាបសឥសីឥណ្ឌាម្នាក់ឈ្មោះ **កម្ពុ ស្វាយម្ភុវ (Kambu Svayambhuva)** ដែលបានធ្វើដំណើរមកកាន់ដែនដីខ្មែរ ហើយបានរៀបអភិសេកជាមួយព្រះនាង **មេរា (Mera)** ដែលជាអប្សរាសួគ៌។ ការផ្សំឈ្មោះ **កម្ពុ + មេរា** បានបង្កើតជាពាក្យ **កម្ពុជា** និង **ខ្មែរ (កម្ពុមេរា > ក្មេរ > ខ្មែរ)**។
+                    </p>
+                </div>
+
+                <!-- Chapter 3 Full -->
+                <div class="chapter-full-card" data-chap="3">
+                    <div class="chapter-title">📘 ជំពូកទី៣ ៖ បុព្វប្រវត្តិសាស្ត្រខ្មែរ</div>
+                    
+                    <div class="section-h3">១. ស្ថានីយបុរេប្រវត្តិសាស្ត្រសំខាន់ៗនៅកម្ពុជា</div>
+                    <p class="narrative">
+                        សម័យបុរេប្រវត្តិសាស្ត្រ គឺជាសម័យកាលដ៏យូរលង់ដែលមនុស្សពុំទាន់ចេះបង្កើតអក្សរសម្រាប់កត់ត្រាព្រឹត្តិការណ៍។ ការសិក្សាអំពីសម័យនេះពឹងផ្អែកទាំងស្រុងលើការជីកស្រាវជ្រាវរបស់បុរាណវត្ថុវិទូ។ នៅកម្ពុជា រកឃើញស្ថានីយបុរេប្រវត្តិសាស្ត្រសំខាន់ៗជាច្រើន៖
+                    </p>
+
+                    <ul class="detail-list">
+                        <li><b>ស្ថានីយល្អាងស្ពាន (ភ្នំទាកទ្រាំង ខេត្តបាត់ដំបង)៖</b> ជាស្ថានីយបុរេប្រវត្តិសាស្ត្រចាស់ជាងគេបំផុតនៅកម្ពុជា (មានអាយុកាលពី ៦៨០០ ដល់ ៤៣០០ ឆ្នាំមុន គ.ស)។ ទីនេះជារូងភ្នំធម្មជាតិដែលមនុស្សបុរាណរស់នៅ ហើយគេបានរកឃើញឧបករណ៍ថ្មដំ, ភាជន៍ដីដុត និងអដ្ឋិធាតុបុរាណ។</li>
+                        <li><b>ស្ថានីយសំរោងសែន (ខេត្តកំពង់ឆ្នាំង)៖</b> ជាស្ថានីយយុគលោហៈដ៏ល្បីល្បាញ រកឃើញឧបករណ៍ធ្វើអំពីស្ពាន់ សំរិទ្ធ, ត្រចៀកកែវ, ក្អមឆ្នាំងដីដុតដែលមានរចនាបថស្អាតបាត។</li>
+                        <li><b>ស្ថានីយដីលើរាងមូលមេមត់ (ខេត្តត្បូងឃ្មុំ)៖</b> ជាភូមិមូលបុរាណដែលមានកំពែងដី និងប្រឡាយទឹកព័ទ្ធជុំវិញ សម្រាប់ការពារសត្វសាហាវ និងសត្រូវ។</li>
+                        <li><b>ស្ថានីយផ្សេងទៀត៖</b> ស្ថានីយអន្លង់ផ្តៅ, ភ្នំក្បាលរ៉ូមាស, ស្ទឹងត្រែង។</li>
+                    </ul>
+
+                    <div class="section-h3">២. យុគសម័យបុរេប្រវត្តិសាស្ត្រទាំង ៣</div>
+                    <div class="story-highlight">
+                        <strong>⏳ ការវិវត្តតាមយុគសម័យបុរេប្រវត្តិសាស្ត្រ៖</strong>
+                        <ol style="margin-top:8px; padding-left:20px;">
+                            <li><b>យុគថ្មបំបែក (Paleolithic ៖ ៦០០,០០០ - ១២,០០០ ឆ្នាំមុន គ.ស)៖</b>
+                                <br>• មនុស្សរស់នៅតាមរូងភ្នំ ឬក្រោមម្លប់ឈើ ផ្លាស់ប្តូរទីកន្លែងចុះឡើង (Nomadic)។
+                                <br>• ស្វែងរកអាហារតាមរយៈការបរបាញ់, បេះផ្លែឈើ និងនេសាទ។
+                                <br>• ប្រើប្រាស់អាវុធថ្មបំបែកគ្រោតគ្រាត, ចេះរកឃើញភ្លើងសម្រាប់ចម្អិនអាហារ និងបំភ្លឺ, ស្លៀកពាក់ស្បែកសត្វ ឬសម្បកឈើ។
+                            </li>
+                            <li style="margin-top:10px;"><b>យុគថ្មរំលីង (Neolithic ៖ ៨,០០០ - ២,០០០ ឆ្នាំមុន គ.ស)៖</b>
+                                <br>• មនុស្សចេះសំលៀង និងខាត់ថ្មឱ្យរលោងធ្វើជាឧបករណ៍ (ពូថៅថ្មរំលីង, កាំបិតថ្ម)។
+                                <br>• ចេះសង់ផ្ទះផុតពីដី រស់នៅជាសហគមន៍ភូមិឋានអចិន្ត្រៃយ៍។
+                                <br>• ចេះធ្វើកសិកម្ម (ដាំស្រូវ, ដាំដំណាំ), ចេះចិញ្ចឹមសត្វ, សូនភាជន៍ដីដុត និងត្បាញសរសៃរុក្ខជាតិ។
+                            </li>
+                            <li style="margin-top:10px;"><b>យុគលោហៈ (Metal Age ៖ ២,០០០ - ១០០ ឆ្នាំមុន គ.ស)៖</b>
+                                <br>• មនុស្សចេះរំលាយ និងស្លលោហៈ (ស្ពាន់, សំរិទ្ធ, ដែក) ធ្វើជាឧបករណ៍ កសិកម្ម និងអាវុធ។
+                                <br>• ធ្វើគ្រឿងអលង្ការប្រណីត (កងដៃ, ក្រវិល, ផ្កាថ្ម, កែវ)។
+                                <br>• មានការបែងចែកពលកម្ម និងការផ្លាស់ប្តូរពាណិជ្ជកម្មជាមួយតំបន់ជិតខាង។
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Chapter 4 Full -->
+                <div class="chapter-full-card" data-chap="4">
+                    <div class="chapter-title">📘 ជំពូកទី៤ ៖ ការចាក់ឫសគល់នៃអរិយធម៌ឥណ្ឌានៅអាស៊ីអាគ្នេយ៍</div>
+                    
+                    <div class="section-h3">១. អត្ថន័យនៃពាក្យ «សុវណ្ណភូមិ» (Suvarnabhumi)</div>
+                    <p class="narrative">
+                        នៅក្នុងឯកសារបុរាណឥណ្ឌា ដូចជា *តំរាជាតក (Jataka)* និងចារឹកបុរាណ តំបន់អាស៊ីអាគ្នេយ៍ត្រូវបានហៅថា **«សុវណ្ណភូមិ» (Suvarnabhumi)** ដែលមានន័យថា **«ដែនដីមាស» (Land of Gold)**។ ឈ្មោះនេះត្រូវបានអ្នកដំណើរ និងពាណិជ្ជករឥណ្ឌាយកមកហៅ ដោយសារតំបន់នេះសម្បូរទៅដោយមាស, គ្រឿងទេស, ឈើអែម, ភ្លុកដំរី និងធនធានធម្មជាតិដ៏ស្តុកស្តម្ភ។
+                    </p>
+
+                    <div class="section-h3">២. បុព្វហេតុនៃការហូរចូលនៃជនជាតិ និងអរិយធម៌ឥណ្ឌា</div>
+                    <p class="narrative">
+                        ដំណើរការនៃការជ្រៀបចូលនៃអរិយធម៌ឥណ្ឌាមកកាន់អាស៊ីអាគ្នេយ៍ (Indianization) បានកើតឡើងដោយអហិង្សា និងតាមផ្លូវសន្តិវិធី តាមរយៈបុព្វហេតុសំខាន់ៗចំនួន ៤ ៖
+                    </p>
+
+                    <ul class="detail-list">
+                        <li><b>បុព្វហេតុពាណិជ្ជកម្ម (ជំនួញមាស)៖</b> ការកាត់ផ្តាច់ផ្លូវជំនួញមាសពីតំបន់ស៊ីបេរី ដោយសារការចលាចល និងការហាមឃាត់ការនាំចេញមាសពីចក្រភពរ៉ូម បង្ខំឱ្យពាណិជ្ជករឥណ្ឌាធ្វើដំណើរតាមសមុទ្រមកស្វែងរកមាស និងគ្រឿងទេសនៅ «សុវណ្ណភូមិ»។</li>
+                        <li><b>ការរីកចម្រើនខាងនាវាចរណ៍៖</b> ជនជាតិឥណ្ឌាចេះសង់សំពៅជំនួញធំៗ (Kula) និងយល់ដឹងច្បាស់ពីទិសដៅខ្យល់រដូវមូសុង ដែលធ្វើឱ្យការធ្វើដំណើរឆ្លងកាត់មហាសមុទ្រឥណ្ឌាមកកាន់ច្រកសមុទ្រម៉ាឡាក់កាកាន់តែមានសុវត្ថិភាព។</li>
+                        <li><b>ការផ្សព្វផ្សាយសាសនា៖</b> ការរីកចម្រើននៃព្រះពុទ្ធសាសនា ដែលលុបបំបាត់ប្រព័ន្ធវណ្ណៈដ៏តឹងរ៉ឹង ធ្វើឱ្យប្រជាជន និងព្រាហ្មណ៍ឥណ្ឌាមិនខ្លាចការបាត់បង់ «ភាពបរិសុទ្ធនៃវណ្ណៈ» ពេលធ្វើដំណើរឆ្លងសមុទ្រ និងទាក់ទងជាមួយបរទេស។</li>
+                        <li><b>កត្តានយោបាយ និងសង្គ្រាមក្នុងស្រុក៖</b> សង្គ្រាមឈ្លានពានដ៏សាហាវឃោរឃៅរបស់អធិរាជអសោក (សង្គ្រាមកលិង្គ Kalinga War) ធ្វើឱ្យប្រជាជន ព្រះសង្ឃ និងព្រាហ្មណ៍ឥណ្ឌាមួយចំនួនធំភៀសខ្លួនមកតាំងទីលំនៅក្នុងតំបន់អាស៊ីអាគ្នេយ៍។</li>
+                    </ul>
+
+                    <div class="story-highlight">
+                        <strong>🌟 ផលប៉ះពាល់ និងការទទួលយកអរិយធម៌ឥណ្ឌា (ខ្មែរូបនីយកម្ម)៖</strong>
+                        <p style="margin-top:6px;">ខ្មែរមិនបានទទួលយកអរិយធម៌ឥណ្ឌាដោយខ្វាក់ភ្នែកឡើយ ប៉ុន្តែបាន **«ខ្មែរូបនីយកម្ម» (Khmerization)** ពោលគឺយកធាតុដើមឥណ្ឌា (អក្សរសំស្ត្រឹត, ច្បាប់ធម្មសាស្ត្រ, លទ្ធិរាជាធិបតេយ្យ, ព្រហ្មញ្ញសាសនា, ពុទ្ធសាសនា) មកកែច្នៃ និងផ្សំជាមួយវប្បធម៌ដើមខ្មែរ (ការគោរពដូនតា, មាតាធិបតេយ្យ, ភាសាខ្មែរ) បង្កើតបានជាអរិយធម៌ខ្មែរដ៏ថ្លៃថ្លា។</p>
+                    </div>
+                </div>
+
+                <!-- Chapter 5 Full -->
+                <div class="chapter-full-card" data-chap="5">
+                    <div class="chapter-title">📘 ជំពូកទី៥ ៖ ប្រភពនៃប្រវត្តិសាស្ត្រខ្មែរ</div>
+                    
+                    <p class="narrative">
+                        ដើម្បីសិក្សា និងរៀបចំសាច់រឿងប្រវត្តិសាស្ត្រខ្មែរឡើងវិញ អ្នកប្រវត្តិវិទូបានពឹងផ្អែកលើប្រភពព័ត៌មាន និងភស្តុតាងធំៗចំនួន ២ ប្រភេទ គឺ **ប្រភពក្នុងស្រុក (ប្រភពជាតិ)** និង **ប្រភពបរទេស**។
+                    </p>
+
+                    <div class="section-h3">១. ប្រភពក្នុងស្រុក (ប្រភពជាតិ)</div>
+                    <ul class="detail-list">
+                        <li><b>សិលាចារឹក (Epigraphy)៖</b> ជាប្រភពប្រវត្តិសាស្ត្រដែលមានតម្លៃ និងច្បាស់លាស់បំផុត ព្រោះសិលាចារឹកត្រូវបានចារឹកលើថ្មក្នុងសម័យកាលផ្ទាល់។ សិលាចារឹកខ្មែរបុរាណចាស់ជាងគេគឺ *សិលាចារឹកវ៉ូកាញ់ (Vo Canh)* និង *សិលាចារឹកអង្គបូរី (K.600 - ចារជាភាសាខ្មែរនៅឆ្នាំ ៦១១ គ.ស)*។ សិលាចារឹកផ្តល់ព័ត៌មានអំពី ព្រះមហាក្សត្រ, សង្គ្រាម, ការបរិច្ចាគដីធ្លី, សាសនា និងសេដ្ឋកិច្ច។</li>
+                        <li><b>ស្ថាបត្យកម្ម និងបុរាណវត្ថុ៖</b> ប្រាសាទបុរាណ (ឥដ្ឋ, ថ្មបាយក្រៀម, ថ្មភក់), រូបបដិមាអាទិទេព, ប្រព័ន្ធធារាសាស្ត្រ (បារាយណ៍), ភាជន៍, ឧបករណ៍ប្រើប្រាស់ និងគ្រឿងអលង្ការ។</li>
+                        <li><b>ឯកសារសរសេរ៖</b> រាជពង្សាវតារខ្មែរ, សាស្ត្រាស្លឹករឹត, ក្រាំង (ទោះបីជាឯកសារភាគច្រើនត្រូវរងការបំផ្លិចបំផ្លាញក្នុងសង្គ្រាមក៏ដោយ)។</li>
+                        <li><b>ឯកសាររៀបរាប់មាត់ (Oral Tradition)៖</b> រឿងព្រេងប្រជាប្រិយ (រឿងព្រះថោងនាងនាគ, រឿងធនញ្ជ័យ, រឿងក្រពើអាធន), ចម្រៀងប្រជាប្រិយ, ម្រឹត ដែលឆ្លុះបញ្ចាំងពីជំនឿ និងទស្សនវិជ្ជានៃសង្គមខ្មែរ។</li>
+                    </ul>
+
+                    <div class="section-h3">២. ប្រភពបរទេស</div>
+                    <div class="story-highlight">
+                        <strong>📜 កំណត់ហេតុ និងឯកសារបរទេសសំខាន់ៗ៖</strong>
+                        <ul style="margin-top:8px; padding-left:20px;">
+                            <li><b>កំណត់ហេតុចិន៖</b> ជាប្រភពសរសេរដ៏មានតម្លៃបំផុត។
+                                <br>• កំណត់ត្រារបស់លោក <b>កាំង ថៃ (Kang Thai)</b> និង <b>ជូ អ៊ិញ (Zhu Ying)</b> នៅសតវត្សទី៣ ស្តីពី «អាណាចក្រហ្វូណន»។
+                                <br>• កំណត់ហេតុដ៏ល្បីល្បាញរបស់លោក <b>ជីវ តាក្វាន់ (Zhou Daguan / Tcheou Ta Kouan)</b> ស្តីពី <b>«ទំនៀមទម្លាប់នៃប្រទេសចេនឡា (真臘風土記)»</b> ក្នុងឆ្នាំ ១២៩៦-១២៩៧ ដែលពិពណ៌នាយ៉ាងលម្អិតអំពីជីវភាព រាជវាំង ទីផ្សារ ជំនឿ ពិធីបុណ្យ និងសង្គមខ្មែរក្នុងសម័យអង្គរ។
+                            </li>
+                            <li><b>កំណត់ត្រាប៉េសកជន និងអ្នកដំណើរអឺរ៉ុប៖</b> កំណត់ត្រាជនជាតិអេស្ប៉ាញ ប៉កទុយហ្គាល់ និងបារាំង (ដូចជាលោក Henri Mouhot ដែលបានធ្វើឱ្យពិភពលោកស្គាល់អង្គរឡើងវិញ)។</li>
+                            <li><b>ឯកសារសៀម, វៀតណាម, និងចារឹកឥណ្ឌា។</b></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chapter 6 Full -->
+                <div class="chapter-full-card" data-chap="6">
+                    <div class="chapter-title">📘 ជំពូកទី៦ ៖ សម័យអាណាចក្រភ្នំ (ហ្វូណន - សតវត្សទី១ ដល់ ទី៦ គ.ស)</div>
+                    
+                    <div class="section-h3">១. ការកកើត និងរឿងព្រេងនៃការបង្កើតអាណាចក្រភ្នំ</div>
+                    <p class="narrative">
+                        អាណាចក្រភ្នំ (ឬចិនហៅថា <b>ហ្វូណន Funan</b> ក្លាយមកពីពាក្យខ្មែរបុរាណ <b>«ភ្នំ»</b>) ជាអាណាចក្រខ្មែរដំបូងគេបង្អស់ដែលមានរចនាសម្ព័ន្ធរដ្ឋបាលជឿនលឿន។ យោងតាមកំណត់ត្រាចិនរបស់លោក កាំង ថៃ និងសិលាចារឹកខ្មែរ៖
+                    </p>
+                    <p class="narrative">
+                        នៅដើមសតវត្សទី១ នៃ គ.ស ព្រាហ្មណ៍ឥណ្ឌាម្នាក់ឈ្មោះ <b>កៅណ្ឌិន្យ (ចិនហៅ ហ៊ុន ទៀន Hun Tien)</b> បានយល់សប្តិឃើញអាទិទេពប្រគល់ធ្នូទិព្វឱ្យ ហើយបានជិះសំពៅជំនួញសំដៅមកកាន់អាណាចក្រភ្នំ។ ពេលមកដល់ ម្ចាស់ស្រុកគឺ <b>នាងលីវយី (ព្រះនាងសោមា / នាងនាគ)</b> បានដឹកនាំទូករាំងផ្លូវ និងប្រយុទ្ធ។ ហ៊ុន ទៀន បានបាញ់ធ្នូទិព្វទម្លុះសំពៅនាងលីវយី ធ្វើឱ្យនាងភ័យខ្លាច និងចុះចាញ់។ ក្រោយមក ហ៊ុន ទៀន បានរៀបអភិសេកជាមួយនាងលីវយី បង្កើតជារាជវង្សខ្មែរដំបូងគេ និងជាដើមចមនៃប្រពៃណីអាពាហ៍ពិពាហ៍ខ្មែរ «តោងស្បៃរឿងព្រះថោងនាងនាគ»។
+                    </p>
+
+                    <div class="section-h3">២. រាជធានី និងកំពង់ផែអន្តរជាតិអូរកែវ</div>
+                    <ul class="detail-list">
+                        <li><b>រាជធានី៖</b> <b>វ្យាធបុរៈ</b> (ទីក្រុងព្រានព្រៃ ស្ថិតនៅម្ដុំបាភ្នំ ខេត្តព្រៃវែង)។</li>
+                        <li><b>កំពង់ផែអន្តរជាតិ៖</b> <b>អូរកែវ (Oc Eo)</b> ស្ថិតនៅភាគខាងត្បូងភ្នំបាថេ ជាមជ្ឈមណ្ឌលពាណិជ្ជកម្មសមុទ្រដ៏រ៉ុងរឿងបំផុត។ នៅទីនោះ គេបានជីកប្រព័ន្ធប្រឡាយខ្វាត់ខ្វែងសម្រាប់សំពៅចូលចត និងបានរកឃើញកាក់មាសរូបអធិរាជរ៉ូម៉ាំង Antoninus Pius, គ្រឿងអលង្ការអ៊ីរ៉ង់, ត្រាចិន និងបដិមាឥណ្ឌា ដែលបញ្ជាក់ពីទំនាក់ទំនងពាណិជ្ជកម្មលក្ខណៈពិភពលោក។</li>
+                    </ul>
+
+                    <div class="story-highlight">
+                        <strong>👑 ក្សត្រល្បីៗ និងការផ្សព្វផ្សាយអរិយធម៌៖</strong>
+                        <ul style="margin-top:8px; padding-left:20px;">
+                            <li><b>ព្រះបាទស្រីមារៈ (ហ្វាន ស៊ីម៉ាន Fan Shih-man)៖</b> ជាមេទ័ពដ៏ខ្លាំងពូកែ បានបង្កើតកងទ័ពជើងទឹកដ៏រឹងមាំ វាយយកប្រទេសជិតខាងជាង ១០ និងទទួលបានងារថា «មហាស្តេចនៃហ្វូណន»។</li>
+                            <li><b>ព្រះបាទកៅណ្ឌិន្យជ័យវរ្ម័ន (ចុងសតវត្សទី៥)៖</b> បានបញ្ជូនបេសកជន និងព្រះសង្ឃខ្មែរ (ព្រះសង្ឃសង្ឃបាល និងមន្ទ្រសេន) ទៅកាន់ប្រទេសចិន ដើម្បីជួយបកប្រែព្រះត្រៃបិដកពីភាសាសំស្ត្រឹតទៅភាសាចិន។</li>
+                            <li><b>សាសនា & សង្គម៖</b> ប្រជាជនរស់នៅដោយសន្តិសហវិជ្ជមាន រវាងព្រហ្មញ្ញសាសនា (សិវនិកាយ & វិស្ណុនិកាយ) និងព្រះពុទ្ធសាសនា។</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chapter 7 Full -->
+                <div class="chapter-full-card" data-chap="7">
+                    <div class="chapter-title">📘 ជំពូកទី៧ ៖ សម័យអាណាចក្រចេនឡា (សតវត្សទី៦ ដល់ ទី៨ គ.ស)</div>
+                    
+                    <div class="section-h3">១. ការរំដោះខ្លួន និងការបង្រួបបង្រួមដីគោក</div>
+                    <p class="narrative">
+                        ចេនឡា (Chenla) ដើមឡើយជារដ្ឋចំណុះមួយរបស់ហ្វូណន ស្ថិតនៅតាមបណ្តោយទន្លេមេគង្គភាគខាងលើ (ម្ដុំវត្តភូ/បាសាក់ ប្រទេសឡាវបច្ចុប្បន្ន)។ នៅពាក់កណ្តាលសតវត្សទី៦ ក្សត្រចេនឡា គឺ <b>ព្រះបាទភវវរ្ម័នទី១</b> និងអនុជរបស់ទ្រង់ <b>មហេន្ទ្រវរ្ម័ន (ចិត្តសេន)</b> បានលើកទ័ពមកវាយរំដោះខ្លួន និងវាយយកអាណាចក្រភ្នំជាបន្តបន្ទាប់។
+                    </p>
+                    <p class="narrative">
+                        <b>ព្រះបាទឥសានវរ្ម័នទី១ (៦១៦ - ៦៣៥ គ.ស)៖</b> បានវាយបំពានយកហ្វូណនទាំងស្រុង និងបានកសាងរាជធានី <b>«ឥសានបុរៈ»</b> (បច្ចុប្បន្នជាតំបន់បេតិកភណ្ឌប្រាសាទសំបូរព្រៃគុក ខេត្តកំពង់ធំ)។ ទ្រង់បានពង្រឹងរដ្ឋបាល និងបង្កើតស្ថាបត្យកម្មប្រាសាទឥដ្ឋដ៏ប្រណីត។
+                    </p>
+
+                    <div class="section-h3">២. ការបែងចែកចេនឡាជាពីរ (ឆ្នាំ ៧០៦ គ.ស)</div>
+                    <p class="narrative">
+                        ក្រោយពេលព្រះបាទ <b>ជ័យវរ្ម័នទី១</b> សុគតនៅឆ្នាំ ៦៨១ គ.ស ដោយគ្មានរជ្ជទាយាទប្រុស ព្រះនាង <b>ជយទេវី</b> (អតីតអគ្គមហេសី) បានឡើងគ្រងរាជ្យ ប៉ុន្តែរដ្ឋបាលកណ្តាលជួបភាពទន់ខ្សោយ និងមានជម្លោះដណ្តើមអំណាចរវាងក្សត្របុរី។ ជាលទ្ធផល នៅឆ្នាំ <b>៧០៦ គ.ស</b> ចេនឡាបានបែកបាក់ជាពីរ ៖
+                    </p>
+
+                    <div class="story-highlight">
+                        <strong>💔 លក្ខណៈនៃការបែងចែកចេនឡាជាពីរ៖</strong>
+                        <ul style="margin-top:8px; padding-left:20px;">
+                            <li><b>ចេនឡាដីគោក (ចិនហៅ វ៉ិនតាន Land Chenla)៖</b> ស្ថិតនៅភាគខាងជើង តាមតំបន់ភ្នំ ជួរភ្នំដងរែក និងប្រទេសឡាវ។ សម្បូរព្រៃឈើ រ៉ែ និងសត្វព្រៃ មានសុខសន្តិភាព និងស្ថិរភាពនយោបាយជាង។</li>
+                            <li><b>ចេនឡាទឹកលិច (Water Chenla)៖</b> ស្ថិតនៅភាគខាងត្បូង តាមតំបន់ទំនាប ទន្លេ បឹង និងសមុទ្រ (ដីសណ្តទន្លេមេគង្គ)។ មានភាពច្របូកច្របល់ បែកបាក់ជាបុរីតូចៗ និងត្រូវរងការវាយប្រហារជារឿយៗពីចោរសមុទ្រជ្វា (សៃលេន្ទ្រ)។</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chapter 8 Full -->
+                <div class="chapter-full-card" data-chap="8">
+                    <div class="chapter-title">📘 ជំពូកទី៨ ៖ សម័យអង្គរ (គ.ស ៨០២ - គ.ស ១៤៣១)</div>
+                    
+                    <div class="section-h3">១. ការបង្កើតសម័យអង្គរ និងពិធីទេវរាជ (ឆ្នាំ ៨០២)</div>
+                    <p class="narrative">
+                        នៅចុងសតវត្សទី៨ ក្សត្រក្មេងមួយអង្គគឺ <b>ព្រះបាទជ័យវរ្ម័នទី២</b> បានយាងត្រឡប់មកពីជ្វា ហើយបានបង្រួបបង្រួមចេនឡាដីគោក និងចេនឡាទឹកលិចឱ្យរួមជានិគមតែមួយវិញ។
+                    </p>
+                    <p class="narrative">
+                        នៅឆ្នាំ <b>៨០២ គ.ស</b> ទ្រង់បានប្រារព្ធ <b>«ពិធីទេវរាជ»</b> លើកំពូលភ្នំ <b>មហិន្ទ្របព៌ត (ភ្នំគូលែន)</b> ដោយមានព្រាហ្មណ៍ <i>សិវកៃវល្យ</i> ជាអ្នកធ្វើពិធី។ ពិធីនេះមានគោលបំណងសំខាន់ ២ គឺ ៖
+                        <br>១. ប្រកាសឯករាជ្យភាពដាច់ខាតរបស់ខ្មែរ ចែកខុសពីការត្រួតត្រារបស់ជ្វា។
+                        <br>២. លើកតម្កើងព្រះមហាក្សត្រឱ្យមានឋានៈជា <b>អាទិទេពលើផែនដី (Kamraten Jagat ta Raja)</b> ដើម្បីប្រមូលផ្តុំអំណាច និងជំនឿប្រជារាស្ត្រ។
+                    </p>
+
+                    <div class="section-h3">២. ព្រះមហាក្សត្រ និងសមិទ្ធផលអស្ចារ្យក្នុងសម័យអង្គរ</div>
+                    <ul class="detail-list">
+                        <li><b>ព្រះបាទឥន្ទ្រវរ្ម័នទី១ (៨៧៧ - ៨៨៩)៖</b> កសាងបារាយណ៍ឥន្ទ្រតដាក (បារាយណ៍ឡូលៃ) និងប្រាសាទបាគង (ប្រាសាទភ្នំដំបូងគេធ្វើអំពីថ្មភក់)។</li>
+                        <li><b>ព្រះបាទយសោវរ្ម័នទី១ (៨ logic - ៩១០)៖</b> រំកិលរាជធានីមកតំបន់អង្គរ បង្កើតរាជធានី <b>«យសោធរបុរៈ»</b> (ភ្នំបាខែង) និងកសាងបារាយណ៍ខាងកើត។</li>
+                        <li><b>ព្រះបាទសូរ្យវរ្ម័នទី២ (១១១៣ - ១១៥០)៖</b> ក្សត្រខ្លាំងពូកែខាងយោធា បានកសាង <b>«ប្រាសាទអង្គរវត្ត»</b> ដ៏ស្កឹមស្កៃអស្ចារ្យលើពិភពលោក ដើម្បីឧទ្ទិសថ្វាយព្រះវិស្ណុ។</li>
+                        <li><b>ព្រះបាទជ័យវរ្ម័នទី៧ (១១៨១ - ១២១៨)៖</b> ព្រះមហាវីរក្សត្រដ៏អស្ចារ្យបំផុត! ទ្រង់បានវាយរំដោះក្រុងអង្គរពីកងទ័ពចាម (ឆ្នាំ ១១៨១), កសាង <b>ក្រុងអង្គរធំ, ប្រាសាទបាយ័ន, ប្រាសាទតាព្រហ្ម, ប្រាសាទព្រះខ័ន</b>, កសាង <b>មន្ទីរពេទ្យ ១០២ កន្លែង</b>, ផ្ទះសំណាក់ ១២១ កន្លែង និងផ្លូវថ្នល់ខ្វាត់ខ្វែងទូទាំងអាណាចក្រ។ ទ្រង់បានលើកស្ទួយ <b>ព្រះពុទ្ធសាសនាមហាយាន (លទ្ធិពុទ្ធរាជ)</b> ជាសាសនារដ្ឋ។</li>
+                    </ul>
+
+                    <div class="story-highlight">
+                        <strong>⚠️ បុព្វហេតុនៃការបោះបង់ចោលរាជធានីអង្គរ (ឆ្នាំ ១៤៣១)៖</strong>
+                        <p style="margin-top:6px;">នៅឆ្នាំ <b>១៤៣១ គ.ស</b> ព្រះបាទ <b>ពញាយ៉ាត</b> បានសម្រេចព្រះទ័យបោះបង់ចោលរាជធានីអង្គរ ដោយសារ៖</p>
+                        <ol style="margin-top:6px; padding-left:20px;">
+                            <li><b>សង្គ្រាម និងការឈ្លានពានជារឿយៗពីសៀម (អយុធ្យា)៖</b> ធ្វើឱ្យរាជធានីអង្គរស្ថិតនៅជិតព្រំដែនសត្រូវពេក ងាយរងការឡោមព័ទ្ធ និងបំផ្លាញ។</li>
+                            <li><b>ការខូចខាតប្រព័ន្ធធារាសាស្ត្រ និងបារាយណ៍៖</b> បណ្តាលមកពីការប្រែប្រួលអាកាសធាតុ គ្រោះទឹកជំនន់ និងគ្រោះរាំងស្ងួត ធ្វើឱ្យមិនអាចផ្គត់ផ្គង់កសិកម្ម និងប្រជាជនច្រើនសន្ធឹកសន្ធាប់បាន។</li>
+                            <li><b>ការផ្លាស់ប្តូរទិសដៅសេដ្ឋកិច្ច៖</b> ការផ្លាស់ប្តូរពីសេដ្ឋកិច្ចកសិកម្មបែបបុរាណ មកជាសេដ្ឋកិច្ចពាណិជ្ជកម្មតាមសមុទ្រ ដែលតម្រូវឱ្យរំកិលរាជធានីមកភាគខាងត្បូង (តំបន់ចតុមុខ/ទន្លេបួនមុខ ភ្នំពេញ) ដើម្បីងាយស្រួលធ្វើជំនួញជាមួយបរទេស។</li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- EXAM & STUDY SECTION -->
+        <div id="section-quiz" style="display:none;">
+            <div id="exam-timer" class="timer-bar">
+                <span class="timer-title">⏱️ រយៈពេលប្រឡងនៅសល់៖</span>
+                <span id="clock" class="timer-clock">60:00</span>
+            </div>
+
+            <div class="chapter-filter" id="chapter-filter">
+                <button class="filter-chip active" onclick="filterChapter('all')">ទាំងអស់ (៥០ សំណួរ QCM / ជំពូក ១-៨)</button>
+                <button class="filter-chip" onclick="filterChapter(1)">ជំពូក ១</button>
+                <button class="filter-chip" onclick="filterChapter(2)">ជំពូក ២</button>
+                <button class="filter-chip" onclick="filterChapter(3)">ជំពូក ៣</button>
+                <button class="filter-chip" onclick="filterChapter(4)">ជំពូក ៤</button>
+                <button class="filter-chip" onclick="filterChapter(5)">ជំពូក ៥</button>
+                <button class="filter-chip" onclick="filterChapter(6)">ជំពូក ៦</button>
+                <button class="filter-chip" onclick="filterChapter(7)">ជំពូក ៧</button>
+                <button class="filter-chip" onclick="filterChapter(8)">ជំពូក ៨</button>
+            </div>
+
+            <div id="quiz-container"></div>
+            <button id="submit-btn" class="btn-submit" onclick="submitExam()">បោះត្រា និងបញ្ជូនកិច្ចការប្រឡង (Submit Exam)</button>
+
+            <div id="result-box" class="result-summary card">
+                <h2>លទ្ធផលនៃការប្រឡងរបស់អ្នក</h2>
+                <div id="score-display" class="score-circle">0/0</div>
+                <p id="result-text" style="font-size: 1.1rem; color: var(--text-muted);"></p>
+                <button class="tab-btn" style="margin-top:20px; background:var(--primary); color:white;" onclick="resetExam()">ប្រឡងឡើងវិញ (Retake)</button>
+            </div>
+        </div>
+
+        <!-- GLOSSARY SECTION -->
+        <div id="section-glossary" style="display: none;">
+            <input type="text" id="kw-search" class="search-box" placeholder="🔍 ស្វែងរកពាក្យគន្លឹះ ឬនិយមន័យ..." onkeyup="searchKeywords()">
+            <div class="keyword-grid" id="keyword-grid"></div>
+        </div>
+
+        <!-- MATCHING SECTION -->
+        <div id="section-matching" style="display: none;">
+            <div class="card" style="background:#eff6ff; border-color:#bfdbfe;">
+                <h3 style="color:var(--primary); margin-bottom:6px;">🧩 លំហាត់ផ្គូផ្គងពាក្យគន្លឹះ និងនិយមន័យ</h3>
+                <p>សូមជ្រើសរើសពាក្យគន្លឹះដែលត្រឹមត្រូវសម្រាប់ផ្គត់ផ្គង់ និងផ្គូផ្គងជាមួយនិយមន័យនីមួយៗខាងក្រោម៖</p>
+            </div>
+            <div id="matching-container"></div>
+            <button class="btn-submit" style="background:var(--purple);" onclick="checkMatching()">ផ្ទៀងផ្ទាត់ និងគណនាពិន្ទុផ្គូផ្គង</button>
+            <div id="matching-result" class="result-summary card">
+                <h2>លទ្ធផលនៃការផ្គូផ្គង</h2>
+                <div id="matching-score" class="score-circle" style="background:var(--purple);">0/0</div>
+                <p id="matching-text" style="font-size: 1.1rem; color: var(--text-muted);"></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const keywordsData = [
+            { term: "អរិយធម៌", def: "ការចម្រើនលូតលាស់នៃសង្គមមនុស្សទាំងផ្នែកសម្ភារៈ (បច្ចេកវិទ្យា ស្ថាបត្យកម្ម) និងផ្នែកស្មារតី (សាសនា សិល្បៈ ច្បាប់)។" },
+            { term: "វប្បធម៌", def: "ផលប្រយោជន៍ និងគុណតម្លៃនៃគំនិត ជំនឿ ទំនៀមទម្លាប់ និងរបៀបរស់នៅដែលមនុស្សបង្កើតឡើង និងផ្ទេរពីជំនាន់មួយទៅជំនាន់មួយ។" },
+            { term: "សង្គមធម៌", def: "ធម៌ ឬច្បាប់សីលធម៌សម្រាប់រៀបចំ និងគ្រប់គ្រងទំនាក់ទំនងនៅក្នុងសង្គមឱ្យមានរបៀបរៀបរយ និងសុខសន្តិភាព។" },
+            { term: "អន្តរប្រល័យ", def: "ការបំផ្លិចបំផ្លាញរវាងគ្នានិងគ្នា ឬការវិនាសសូន្យទៅវិញទៅមកក្នុងសង្គ្រាម ឬកលិយុគ។" },
+            { term: "នរវិទ្យា", def: "វិទ្យាសាស្ត្រសិក្សាអំពីមនុស្សជាតិ ដើមកំណើត ការវិវត្ត រូបរាងកាយ និងវប្បធម៌របស់មនុស្ស។" },
+            { term: "បុរាណវត្ថុវិទ្យា", def: "វិទ្យាសាស្ត្រសិក្សាអំពីអតីតកាលរបស់មនុស្សតាមរយៈការជីកស្រាវជ្រាវ និងវិភាគលើវត្ថុបុរាណ ឧបករណ៍ និងសំណង់បុរាណ។" },
+            { term: "បុរេប្រវត្តិវិទ្យា", def: "ការសិក្សាស្រាវជ្រាវអំពីសម័យកាលមុនពេលមនុស្សចេះបង្កើតអក្សរសេរសម្រាប់កត់ត្រាព្រឹត្តិការណ៍។" },
+            { term: "បុរេប្រវត្តិសាស្ត្រ", def: "សម័យកាលអតីតកាលដ៏យូរលង់របស់មនុស្សជាតិ ដែលពុំទាន់មានអក្សរសេរនៅឡើយ។" },
+            { term: "អាជ្ញាការ", def: "ការអនុវត្តអំណាច ឬការបំពេញភារកិច្ចតាមផ្លូវច្បាប់ និងបញ្ជារបស់រដ្ឋ។" },
+            { term: "អាជ្ញាធរ", def: "ក្រុមមនុស្ស ឬស្ថាប័នដែលមានអំណាចតាមច្បាប់ក្នុងការគ្រប់គ្រង និងដឹកនាំរដ្ឋ ឬដែនដី។" },
+            { term: "មនោចេតនា", def: "ឆន្ទៈ ទឹកចិត្ត ឬអារម្មណ៍ដែលកើតចេញពីបេះដូង និងគំនិតខាងក្នុង។" },
+            { term: "ជនជាតិយោសក់", def: "កុលសម្ព័ន្ធ ឬក្រុមជនជាតិដើមភាគតិចមួយក្នុងអម្បូរខ្មែរ-មន ដែលរស់នៅតំបន់ខ្ពង់រាប។" },
+            { term: "ពិធីទេវរាជ", def: "ពិធីសាសនាដែលរៀបចំឡើងដោយព្រាហ្មណ៍សិវកៃវល្យ ដើម្បីលើកតម្កើងព្រះមហាក្សត្រ (ព្រះបាទជ័យវរ្ម័នទី២) ឱ្យមានឋានៈជាអាទិទេពលើផែនដី និងប្រកាសឯករាជ្យពីជ្វា ឆ្នាំ៨០២។" },
+            { term: "ខ្លោងទ្វារជ័យ", def: "ខ្លោងទ្វារមួយក្នុងចំណោមខ្លោងទ្វារទាំង ៥ នៃក្រុងអង្គរធំ (ទិសខាងកើតភាគខាងជើង) សម្រាប់កងទ័ពធ្វើដំណើរចេញចូលពេលមានជ័យជំនះ។" },
+            { term: "ខ្លោងទ្វារដីឆ្មាំង", def: "ខ្លោងទ្វារទិសខាងជើងនៃក្រុងអង្គរធំ។" },
+            { term: "ខ្លោងទ្វារទន្លេអុំ", def: "ខ្លោងទ្វារទិសខាងត្បូងនៃក្រុងអង្គរធំ ដែលស្អាត និងពេញនិយមជាងគេ។" },
+            { term: "ខ្លោងទ្វារតាកាវ", def: "ខ្លោងទ្វារទិសខាងលិចនៃក្រុងអង្គរធំ។" },
+            { term: "ខ្លោងទ្វារខ្មោច", def: "ខ្លោងទ្វារទិសខាងកើត (ភាគខាងត្បូងខ្លោងទ្វារជ័យ) សម្រាប់ដឹកសពចេញទៅបូជា។" },
+            { term: "លទ្ធិបុគ្គលនិយម", def: "គំនិត ឬទស្សនៈដែលលើកតម្កើងសេរីភាព និងផលប្រយោជន៍របស់បុគ្គលម្នាក់ៗជាធំ។" },
+            { term: "លទ្ធិសមូហនិយម", def: "គំនិត ឬទស្សនៈដែលលើកតម្កើងផលប្រយោជន៍រួមរបស់សហគមន៍ ឬសង្គមទាំងមូលជាធំ។" },
+            { term: "លទ្ធិពុទ្ធរាជ", def: "ជំនឿ និងការលើកតម្កើងព្រះមហាក្សត្រឱ្យមានឋានៈស្មើនឹងព្រះពុទ្ធ ឬព្រះពោធិសត្វ (និយមខ្លាំងក្នុងរជ្ជកាលព្រះបាទជ័យវរ្ម័នទី៧)។" },
+            { term: "លទ្ធិទេវរាជ", def: "ជំនឿដែលចាត់ទុកព្រះមហាក្សត្រជាអាទិទេព (ស្តេចសភាវៈអាទិទេព) តំណាងឱ្យព្រះអសមាសនៅលើផែនដី។" },
+            { term: "ពុទ្ធសាសនា", def: "សាសនាដែលសម្តេចព្រះសម្មាសម្ពុទ្ធ (ព្រះសក្យមុនី) បានត្រាស់ដឹង និងទូន្មានប្រដៅអំពីអរិយសច្ចៈ ៤ និងផ្លូវកណ្តាល។" },
+            { term: "ព្រហ្មញ្ញសាសនា", def: "សាសនាបុរាណឥណ្ឌាដែលគោរពបូជាអាទិទេពទាំងបី (ព្រះព្រហ្ម ព្រះវិស្ណុ ព្រះសិវៈ)។" },
+            { term: "វណ្ណៈរាជសម្បត្តិ", def: "ថ្នាក់សង្គមខ្ពស់បំផុត រួមមាន ព្រះមហាក្សត្រ ព្រះរាជវង្សានុវង្ស និងមន្ត្រីជាន់ខ្ពស់។" },
+            { term: "វណ្ណៈអ្នកជា", def: "ប្រជារាស្ត្រទូទៅដែលមានសេរីភាព មិនមែនជាខ្ញុំកញ្ជះ ឬទាសករឡើយ។" },
+            { term: "វណ្ណៈអ្នកងារ", def: "ក្រុមមនុស្សដែលធ្វើការងារបម្រើប្រាសាទ ព្រះមហាក្សត្រ ឬអ្នកជំនួញ (ពលប្រាសាទ ឬទាសករ)។" },
+            { term: "យសោធរបុរៈ", def: "រាជធានីដំបូងនៃសម័យអង្គរ ដែលកសាងឡើងដោយព្រះបាទយសោវរ្ម័នទី១ នៅភ្នំបាខែង។" },
+            { term: "អង្គរធំ", def: "រាជធានីដ៏ធំស្កឹមស្កៃក្នុងសម័យអង្គរ ដែលកសាងឡើងវិញយ៉ាងរឹងមាំដោយព្រះបាទជ័យវរ្ម័នទី៧ មានខ្លោងទ្វារ ៥ និងប្រាសាទបាយ័ននៅចំកណ្តាល។" },
+            { term: "មហិន្ទ្របព៌ត", def: "ឈ្មោះបុរាណនៃ «ភ្នំគូលែន» ជាទីកន្លែងដែលព្រះបាទជ័យវរ្ម័នទី២ ប្រារព្ធពិធីទេវរាជ នៅឆ្នាំ ៨០២។" },
+            { term: "ព្រះហរិហរៈ", def: "អាទិទេពរួមគ្នារវាង ព្រះវិស្ណុ (ហរិ) និង ព្រះសិវៈ (ហរៈ) នៅក្នុងព្រហ្មញ្ញសាសនា។" }
+        ];
+
+        const examQuestions = [
+  {
+    "id": 1,
+    "chapter": 1,
+    "chapterTitle": "ជំពូកទី១ ៖ មជ្ឈដ្ឋានភូមិសាស្ត្រ និងដើមកំណើតជាតិខ្មែរ",
+    "type": "mcq",
+    "question": "១. តើអ្វីទៅជា និយមន័យនៃប្រវត្តិសាស្ត្រ?",
+    "options": [
+      "ជាការសិក្សាអំពីអតីតកាល ដើម្បីយល់អំពីវប្បធម៌ សេដ្ឋកិច្ច នយោបាយ ទំនៀមទម្លាប់ ច្បាប់ និងប្រាជ្ញារបស់មនុស្សជាតិ",
+      "ជាការទស្សន៍ទាយអំពីព្រឹត្តិការណ៍អនាគតនៃប្រទេសជាតិ",
+      "ជាការកត់ត្រាអំពីភូមិសាស្ត្រ និងអាកាសធាតុនៃតំបន់អាស៊ី",
+      "ជាការសិក្សាអំពីភាសាបរទេសតែមួយមុខ"
+    ],
+    "answer": 0,
+    "explanation": "ប្រវត្តិសាស្ត្រ គឺជាវិទ្យាសាស្ត្រសង្គមដែលសិក្សាស្រាវជ្រាវ និងកត់ត្រាអំពីព្រឹត្តិការណ៍ សកម្មភាព និងការវិវត្តរបស់មនុស្សជាតិក្នុងអតីតកាល។"
+  },
+  {
+    "id": 2,
+    "chapter": 1,
+    "chapterTitle": "ជំពូកទី១ ៖ មជ្ឈដ្ឋានភូមិសាស្ត្រ និងដើមកំណើតជាតិខ្មែរ",
+    "type": "mcq",
+    "question": "២. តាមលទ្ធផលនៃការសិក្សាស្រាវជ្រាវនរវិទ្យា (Anthropology) សន្ទស្សន៍លលាដ៍ក្បាលរបស់មនុស្សខ្មែរគឺ៖",
+    "options": [
+      "សន្ទស្សន៍លលាដ៍ក្បាល ៧៣.៨ (ក្បាលពយ)",
+      "សន្ទស្សន៍លលាដ៍ក្បាល ៨៤.៥ (ក្បាលមូល)",
+      "សន្ទស្សន៍លលាដ៍ក្បាល ៧៦.២ (ក្បាលពយ)",
+      "សន្ទស្សន៍លលាដ៍ក្បាល ៦៥.០ (ក្បាលសំប៉ែត)"
+    ],
+    "answer": 1,
+    "explanation": "ខ្មែរជាម្ចាស់ស្រុកដើម មានកម្ពស់ជាមធ្យម ១.៦១ម និងសន្ទស្សន៍លលាដ៍ក្បាលជាមធ្យម ៨៤.៥ (ក្បាលមូល - Brachycephalic) ខុសស្រឡះពីឥណ្ឌាអារ្យ (៧៣.៨) និងឥណ្ឌាទ្រាវិឌ (៧៦.២)។"
+  },
+  {
+    "id": 3,
+    "chapter": 1,
+    "chapterTitle": "ជំពូកទី១ ៖ មជ្ឈដ្ឋានភូមិសាស្ត្រ និងដើមកំណើតជាតិខ្មែរ",
+    "type": "mcq",
+    "question": "៣. តើបឹងណាជាជម្រុកមច្ឆជាតិដ៏ធំជាងគេនៅអាស៊ីអាគ្នេយ៍ និងផ្តល់ដីល្បាប់ជីជាតិដល់កម្ពុជា?",
+    "options": [
+      "បឹងកាញ់ណារីយ៉ា",
+      "បឹងទន្លេសាប",
+      "បឹងយក្សឡោម",
+      "បឹងតូបា"
+    ],
+    "answer": 1,
+    "explanation": "បឹងទន្លេសាប ជាបឹងទឹកសាប និងជម្រុកមច្ឆជាតិដ៏ធំជាងគេនៅអាស៊ីអាគ្នេយ៍ ដោយមានប្រព័ន្ធទន្លេមេគង្គហូរច្រកនាំដីល្បាប់មានជីជាតិនៅរដូវវស្សា។"
+  },
+  {
+    "id": 4,
+    "chapter": 1,
+    "chapterTitle": "ជំពូកទី១ ៖ មជ្ឈដ្ឋានភូមិសាស្ត្រ និងដើមកំណើតជាតិខ្មែរ",
+    "type": "mcq",
+    "question": "៤. តើប្រទេសកម្ពុជាស្ថិតក្នុងតំបន់អាកាសធាតុបែបណា?",
+    "options": [
+      "អាកាសធាតុត្រជាក់ព្រិល",
+      "អាកាសធាតុតំបន់វាលខ្សាច់",
+      "អាកាសធាតុក្តៅហើយសើម គ្របដណ្តប់ដោយខ្យល់រដូវ (មូសុង)",
+      "អាកាសធាតុតំបន់ប៉ូល"
+    ],
+    "answer": 2,
+    "explanation": "កម្ពុជាស្ថិតក្នុងតំបន់ក្តៅហើយសើម (Tropical Monsoon) មានពីររដូវច្បាស់លាស់ គឺរដូវប្រាំង និងរដូវវស្សា អំណោយផលខ្លាំងដល់ការធ្វើកសិកម្មស្រូវ។"
+  },
+  {
+    "id": 5,
+    "chapter": 1,
+    "chapterTitle": "ជំពូកទី១ ៖ មជ្ឈដ្ឋានភូមិសាស្ត្រ និងដើមកំណើតជាតិខ្មែរ",
+    "type": "mcq",
+    "question": "៥. តើជួរភ្នំសំខាន់ៗពីរណាខ្លះដែលដើរតួជាកំផែងការពារធម្មជាតិនៃប្រទេសកម្ពុជា?",
+    "options": [
+      "ជួរភ្នំហិម៉ាល័យ និង ជួរភ្នំអាល់",
+      "ជួរភ្នំក្រវ៉ាញ និង ជួរភ្នំដងរែក",
+      "ជួរភ្នំអណ្ដាម៉ាន និង ជួរភ្នំអាណាម",
+      "ជួរភ្នំរ៉កគី និង ជួរភ្នំអង់ដេស"
+    ],
+    "answer": 1,
+    "explanation": "ជួរភ្នំក្រវ៉ាញ (ទិសនិរតី) និងជួរភ្នំដងរែក (ទិសខាងជើង) ជាកំផែងការពារធម្មជាតិពីខ្យល់ព្យុះ និងការឈ្លានពានពីខាងក្រៅ។"
+  },
+  {
+    "id": 6,
+    "chapter": 1,
+    "chapterTitle": "ជំពូកទី១ ៖ មជ្ឈដ្ឋានភូមិសាស្ត្រ និងដើមកំណើតជាតិខ្មែរ",
+    "type": "mcq",
+    "question": "៦. ភាសាខ្មែរស្ថិតនៅក្នុងអម្បូរភាសាណា?",
+    "options": [
+      "អម្បូរភាសាចិន-ទីបេ (Sino-Tibetan)",
+      "អម្បូរភាសាឥណ្ឌូ-អឺរ៉ុប (Indo-European)",
+      "អម្បូរភាសាខ្មែរ-មន (Austroasiatic)",
+      "អម្បូរភាសាអាល់តៃ (Altaic)"
+    ],
+    "answer": 2,
+    "explanation": "ភាសាខ្មែរស្ថិតក្នុងអម្បូរភាសាខ្មែរ-មន (Austroasiatic Language Family) ដែលជាគ្រួសារភាសាបុរាណបំផុតមួយនៅអាស៊ីអាគ្នេយ៍។"
+  },
+  {
+    "id": 7,
+    "chapter": 2,
+    "chapterTitle": "ជំពូកទី២ ៖ អម្បូរខ្មែរ-មន",
+    "type": "mcq",
+    "question": "៧. យោងតាមការសិក្សារបស់លោក លីនដា អេវ៉ាន់ (1964) តើអម្បូរខ្មែរ-មន មានគ្នាសរុបប៉ុន្មានក្រុម/ជនជាតិ?",
+    "options": [
+      "៥០ ក្រុម",
+      "៦៥ ក្រុម",
+      "៧៦ ក្រុម",
+      "១០០ ក្រុម"
+    ],
+    "answer": 2,
+    "explanation": "យោងតាមសៀវភៅ 'Ethnic groups of mainland South-East Asia' អម្បូរខ្មែរ-មន មានសរុប ៧៦ ក្រុម រស់នៅរាយប៉ាយពីឥណ្ឌាភាគខាងកើតដល់សមុទ្រចិន។"
+  },
+  {
+    "id": 8,
+    "chapter": 2,
+    "chapterTitle": "ជំពូកទី២ ៖ អម្បូរខ្មែរ-មន",
+    "type": "mcq",
+    "question": "៨. តាមទស្សនៈលោកបណ្ឌិតសាស្ត្រាចារ្យ កេង វ៉ាន់សាក់ ពាក្យ «ខ្មែរ» មានដើមកំណើតមកពីណា?",
+    "options": [
+      "ក្លាយមកពីពាក្យផ្សំ ក + មេ (កមេ > ក្មេ > ក្មេរ > ខ្មែរ) ដោយសារខ្មែរគោរពមាតាធិបតេយ្យ (ទុកស្រីជាធំ)",
+      "ក្លាយមកពីពាក្យឥណ្ឌា 'Kamera'",
+      "ក្លាយមកពីពាក្យចិន 'Khamer'",
+      "ក្លាយមកពីឈ្មោះភ្នំមួយនៅហ៊ីម៉ាឡៃ"
+    ],
+    "answer": 0,
+    "explanation": "លោក កេង វ៉ាន់សាក់ ពន្យល់ថា «ខ្មែរ» ក្លាយមកពី «ក + មេ» ដោយសារសង្គមខ្មែរប្រតិបត្តិតាមរបៀបមាតាធិបតេយ្យ រាប់អានស្ត្រីជាធំ (មេផ្ទះ, មេភូមិ, មេទ័ព)។"
+  },
+  {
+    "id": 9,
+    "chapter": 2,
+    "chapterTitle": "ជំពូកទី២ ៖ អម្បូរខ្មែរ-មន",
+    "type": "mcq",
+    "question": "៩. តាមទស្សនៈលោក កេង វ៉ាន់សាក់ ពាក្យ «កម្ពុជា» មានន័យដូចម្តេច?",
+    "options": [
+      "មកពីពាក្យ 'ក + ពូជជា' មានន័យថា ពូជជា ពូជថ្លៃថ្នូរ ពូជដែលមានសេរីភាព",
+      "មានន័យថា ដែនដីប្រាសាទថ្ម",
+      "មានន័យថា អ្នករស់នៅតាមមាត់ទន្លេ",
+      "មានន័យថា ពូជអ្នកចម្បាំងបរទេស"
+    ],
+    "answer": 0,
+    "explanation": "លោក កេង វ៉ាន់សាក់ បកស្រាយថា «កម្ពុជា» មកពី «ក + ពូជជា» (កពូជជា > កម្ពុជា) មានន័យថា ពូជថ្លៃថ្នូរ មិនដែលធ្វើខ្ញុំកញ្ជះគេឡើយ។"
+  },
+  {
+    "id": 10,
+    "chapter": 2,
+    "chapterTitle": "ជំពូកទី២ ៖ អម្បូរខ្មែរ-មន",
+    "type": "mcq",
+    "question": "១០. តាមប្រភពសិលាចារឹក និងឥណ្ឌា ពាក្យ «កម្ពុជា» មកពីការផ្សំឈ្មោះតួអង្គពីរណាខ្លះ?",
+    "options": [
+      "ឥសី កម្ពុ ស្វាយម្ភុវ និង ព្រះនាង មេរា (កម្ពុ + មេរា)",
+      "ព្រះថោង និង នាងនាគ",
+      "ហ៊ុន ទៀន និង នាងលីវយី",
+      "ព្រះរាម និង នាងសីដា"
+    ],
+    "answer": 0,
+    "explanation": "តាមចារឹក និងឥណ្ឌា កម្ពុជា មកពីការផ្សំឈ្មោះតាបសឥសី កម្ពុ ស្វាយម្ភុវ និង ព្រះនាងអប្សរា មេរា (កម្ពុ + មេរា > កម្ពុជា / ក្មេរ)។"
+  },
+  {
+    "id": 11,
+    "chapter": 2,
+    "chapterTitle": "ជំពូកទី២ ៖ អម្បូរខ្មែរ-មន",
+    "type": "mcq",
+    "question": "១១. តើរបៀបគ្រប់គ្រងសង្គមដើមដំបូងរបស់ខ្មែរមុនឥទ្ធិពលឥណ្ឌា គឺ៖",
+    "options": [
+      "បិតាធិបតេយ្យ (ទុកបុរសជាធំ)",
+      "មាតាធិបតេយ្យ (ទុកស្ត្រីជាធំ)",
+      "រាជាធិបតេយ្យផ្តាច់ការ",
+      "ប្រជាធិបតេយ្យសេរី"
+    ],
+    "answer": 1,
+    "explanation": "សង្គមខ្មែរដើមប្រតិបត្តិតាមរបៀប «មាតាធិបតេយ្យ» (Matriarchy) ដែលទុកស្ត្រីជាធំ ដូចជា មេផ្ទះ, មេភូមិ, មេឃុំ, មេទ័ព និងតំណពូជតាមខាងម្តាយ។"
+  },
+  {
+    "id": 12,
+    "chapter": 2,
+    "chapterTitle": "ជំពូកទី២ ៖ អម្បូរខ្មែរ-មន",
+    "type": "mcq",
+    "question": "១២. តើដែនដីរស់នៅដើមនៃអម្បូរខ្មែរ-មន គ្របដណ្តប់លើតំបន់ណា?",
+    "options": [
+      "អាស៊ីអាគ្នេយ៍ដីគោក ចាប់ពីឥណ្ឌាភាគខាងកើត រហូតដល់សមុទ្រចិន",
+      "តំបន់ស៊ីបេរី ប្រទេសរុស្ស៊ី",
+      "តំបន់មជ្ឈិមបូព៌ា",
+      "ទ្វីបអូស្ត្រាលី"
+    ],
+    "answer": 0,
+    "explanation": "ជនជាតិអម្បូរខ្មែរ-មន រស់នៅលាតសន្ធឹងលើអាស៊ីអាគ្នេយ៍ដីគោក ចាប់ពីភាគខាងកើតឥណ្ឌា រហូតដល់ឆ្នេរសមុទ្រចិន និងជ្វា។"
+  },
+  {
+    "id": 13,
+    "chapter": 3,
+    "chapterTitle": "ជំពូកទី៣ ៖ បុព្វប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "១៣. តើស្ថានីយបុរេប្រវត្តិសាស្ត្រខ្មែរមួយណាដែលមានអាយុកាលចាស់ជាងគេបង្អស់នៅកម្ពុជា (៦៨០០-៤៣០០ មុន គ.ស)?",
+    "options": [
+      "ស្ថានីយសំរោងសែន",
+      "ស្ថានីយល្អាងស្ពាន (ខេត្តបាត់ដំបង)",
+      "ស្ថានីយមេមត់",
+      "ស្ថានីយអន្លង់ផ្តៅ"
+    ],
+    "answer": 1,
+    "explanation": "ស្ថានីយល្អាងស្ពាន (ភ្នំទាកទ្រាំង ខេត្តបាត់ដំបង) ជាស្ថានីយរូងភ្នំបុរេប្រវត្តិសាស្ត្រចាស់ជាងគេបំផុតនៅកម្ពុជា។"
+  },
+  {
+    "id": 14,
+    "chapter": 3,
+    "chapterTitle": "ជំពូកទី៣ ៖ បុព្វប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "១៤. តើស្ថានីយសំរោងសែន (ខេត្តកំពង់ឆ្នាំង) ល្បីល្បាញខាងអ្វីក្នុងសម័យបុរេប្រវត្តិសាស្ត្រ?",
+    "options": [
+      "ជាស្ថានីយយុគលោហៈ ដែលរកឃើញឧបករណ៍ស្ពាន់ សំរិទ្ធ និងត្រចៀកកែវ",
+      "ជាស្ថានីយរូងភ្នំយុគថ្មបំបែក",
+      "ជាទីក្រុងកំពង់ផែសមុទ្រ",
+      "ជាប្រាសាទថ្មបាយក្រៀម"
+    ],
+    "answer": 0,
+    "explanation": "ស្ថានីយសំរោងសែន ជាស្ថានីយយុគលោហៈដ៏សំខាន់ ដែលរកឃើញឧបករណ៍ធ្វើអំពីស្ពាន់ សំរិទ្ធ ត្រចៀកកែវ និងក្អមឆ្នាំងដីដុត។"
+  },
+  {
+    "id": 15,
+    "chapter": 3,
+    "chapterTitle": "ជំពូកទី៣ ៖ បុព្វប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "១៥. តើស្ថានីយដីលើរាងមូលមេមត់ (ខេត្តត្បូងឃ្មុំ) មានលក្ខណៈសម្គាល់ពិសេសអ្វី?",
+    "options": [
+      "ជាភូមិមូលបុរាណដែលមានកំពែងដី និងប្រឡាយទឹកព័ទ្ធជុំវិញ",
+      "ជារូងភ្នំធម្មជាតិនៅកម្ពស់ខ្ពស់",
+      "ជាទីលានបូជាសពលើកំពូលភ្នំ",
+      "ជាកំពង់ផែសំពៅបុរាណ"
+    ],
+    "answer": 0,
+    "explanation": "ស្ថានីយដីលើរាងមូលមេមត់ ជាភូមិមូលបុរាណដែលមានកំពែងដី និងប្រឡាយទឹកព័ទ្ធជុំវិញ សម្រាប់ការពារសត្វសាហាវ និងសត្រូវ។"
+  },
+  {
+    "id": 16,
+    "chapter": 3,
+    "chapterTitle": "ជំពូកទី៣ ៖ បុព្វប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "១៦. តើមនុស្សក្នុងយុគថ្មបំបែក (Paleolithic) មានរបៀបរស់នៅយ៉ាងដូចម្តេច?",
+    "options": [
+      "រស់នៅតាមរូងភ្នំ បរបាញ់សត្វ បេះផ្លែឈើ ផ្លាស់ប្តូរទីកន្លែង (Nomadic) និងចេះប្រើភ្លើង",
+      "ចេះធ្វើស្រែចំការ និងសង់ផ្ទះល្វែង",
+      "ចេះផ្សំលោហៈស្ពាន់ និងសំរិទ្ធ",
+      "ចេះបង្កើតអក្សរ និងច្បាប់"
+    ],
+    "answer": 0,
+    "explanation": "ក្នុងយុគថ្មបំបែក មនុស្សរស់នៅតាមរូងភ្នំ ចរចរផ្លាស់ប្តូរទីកន្លែង បរបាញ់ បេះផ្លែឈើ និងប្រើប្រាស់អាវុធថ្មគ្រោតគ្រាត។"
+  },
+  {
+    "id": 17,
+    "chapter": 3,
+    "chapterTitle": "ជំពូកទី៣ ៖ បុព្វប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "១៧. តើរបកគំហើញធំបំផុតក្នុងយុគថ្មរំលីង (Neolithic) គឺអ្វី?",
+    "options": [
+      "ការចេះសំលៀងថ្មឱ្យរលោង, សង់ផ្ទះផុតពីដី, និងចាប់ផ្តើមធ្វើកសិកម្មដាំដំណាំ/ចិញ្ចឹមសត្វ",
+      "ការប្រើប្រាស់កុំព្យូទ័រ និងគ្រឿងយន្ត",
+      "ការធ្វើសំពៅចម្បាំងធំៗ",
+      "ការកសាងប្រាសាទថ្មភក់"
+    ],
+    "answer": 0,
+    "explanation": "យុគថ្មរំលីង ជាសម័យបដិវត្តន៍កសិកម្ម មនុស្សចេះសំលៀងថ្មធ្វើឧបករណ៍ សង់ផ្ទះផុតពីដី រស់នៅជាសហគមន៍ និងធ្វើកសិកម្ម។"
+  },
+  {
+    "id": 18,
+    "chapter": 3,
+    "chapterTitle": "ជំពូកទី៣ ៖ បុព្វប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "១៨. នៅក្នុងយុគលោហៈ (Metal Age) តើមនុស្សចេះប្រើប្រាស់ធាតុលោហៈអ្វីខ្លះធ្វើជាឧបករណ៍?",
+    "options": [
+      "ស្ពាន់, សំរិទ្ធ, និង ដែក",
+      "ផ្លាស្ទិច និង កែវសាំងស៊ីទិក",
+      "អាលុយមីញ៉ូម និង អ៊ុយរ៉ាញ៉ូម",
+      "ស៊ីម៉ង់ត៍ និង អាបស្តូ"
+    ],
+    "answer": 0,
+    "explanation": "យុគលោហៈ មនុស្សចេះស្ល និងរំលាយលោហៈ ស្ពាន់ សំរិទ្ធ និងដែក ធ្វើជាអាវុធ ឧបករណ៍កសិកម្ម និងគ្រឿងអលង្ការ។"
+  },
+  {
+    "id": 19,
+    "chapter": 4,
+    "chapterTitle": "ជំពូកទី៤ ៖ ការចាក់ឫសគល់នៃអរិយធម៌ឥណ្ឌានៅអាស៊ីអាគ្នេយ៍",
+    "type": "mcq",
+    "question": "១៩. តើពាក្យថា «សុវណ្ណភូមិ» (Suvarnabhumi) ក្នុងឯកសារបុរាណឥណ្ឌា មានន័យដូចម្តេច?",
+    "options": [
+      "ដែនដីនៃពុទ្ធសាសនា",
+      "ដែនដីមាស (Land of Gold)",
+      "ដែនដីនៃទន្លេទាំងប្រាំ",
+      "ដែនដីនៃកោះរាប់ពាន់"
+    ],
+    "answer": 1,
+    "explanation": "សុវណ្ណភូមិ មានន័យថា «ដែនដីមាស» ជាឈ្មោះដែលឥណ្ឌាហៅតំបន់អាស៊ីអាគ្នេយ៍ ដោយសារសម្បូរមាស គ្រឿងទេស និងធនធានធម្មជាតិ។"
+  },
+  {
+    "id": 20,
+    "chapter": 4,
+    "chapterTitle": "ជំពូកទី៤ ៖ ការចាក់ឫសគល់នៃអរិយធម៌ឥណ្ឌានៅអាស៊ីអាគ្នេយ៍",
+    "type": "mcq",
+    "question": "២០. តើកត្តាជំនួញសំខាន់អ្វីដែលបង្ខំឱ្យពាណិជ្ជករឥណ្ឌាធ្វើដំណើរមកស្វែងរកមាសនៅ «សុវណ្ណភូមិ»?",
+    "options": [
+      "ការកាត់ផ្តាច់ផ្លូវជំនួញមាសពីតំបន់ស៊ីបេរី និងការហាមឃាត់នាំចេញមាសពីចក្រភពរ៉ូម",
+      "ការបាត់បង់កោះស្រីលង្កា",
+      "ការចង់បានស្រូវពីប្រទេសខ្មែរ",
+      "ការចម្លងជំងឺរាតត្បាតនៅឥណ្ឌា"
+    ],
+    "answer": 0,
+    "explanation": "ការកាត់ផ្តាច់ជំនួញមាសពីស៊ីបេរី និងចក្រភពរ៉ូម បង្ខំឱ្យឥណ្ឌាមកស្វែងរកមាសនៅសុវណ្ណភូមិតាមផ្លូវសមុទ្រ។"
+  },
+  {
+    "id": 21,
+    "chapter": 4,
+    "chapterTitle": "ជំពូកទី៤ ៖ ការចាក់ឫសគល់នៃអរិយធម៌ឥណ្ឌានៅអាស៊ីអាគ្នេយ៍",
+    "type": "mcq",
+    "question": "២១. តើសាសនាឥណ្ឌាណាដែលបានលុបបំបាត់ «ប្រព័ន្ធវណ្ណៈ» ធ្វើឱ្យប្រជាជនឥណ្ឌាមិនខ្លាចការធ្វើដំណើរឆ្លងសមុទ្រ?",
+    "options": [
+      "ព្រះពុទ្ធសាសនា",
+      "ព្រហ្មញ្ញសាសនា",
+      "សាសនាជេន",
+      "សាសនាស៊ិខ"
+    ],
+    "answer": 0,
+    "explanation": "ព្រះពុទ្ធសាសនាលុបបំបាត់ប្រព័ន្ធវណ្ណៈដ៏តឹងរ៉ឹង ធ្វើឱ្យប្រជាជន និងព្រាហ្មណ៍ឥណ្ឌាមិនខ្លាចការបាត់បង់ «ភាពបរិសុទ្ធនៃវណ្ណៈ» ពេលឆ្លងសមុទ្រ។"
+  },
+  {
+    "id": 22,
+    "chapter": 4,
+    "chapterTitle": "ជំពូកទី៤ ៖ ការចាក់ឫសគល់នៃអរិយធម៌ឥណ្ឌានៅអាស៊ីអាគ្នេយ៍",
+    "type": "mcq",
+    "question": "២២. តើសង្គ្រាមឈ្លានពានដ៏សាហាវរបស់អធិរាជអសោកនៅឥណ្ឌាមានឈ្មោះអ្វី ដែលធ្វើឱ្យប្រជាជនឥណ្ឌាភៀសខ្លួនមកអាស៊ីអាគ្នេយ៍?",
+    "options": [
+      "សង្គ្រាមកលិង្គ (Kalinga War)",
+      "សង្គ្រាមត្រវ៉ង់ក័របុរ",
+      "សង្គ្រាមមហាភារតៈ",
+      "សង្គ្រាមកម្រងចាម"
+    ],
+    "answer": 0,
+    "explanation": "សង្គ្រាមកលិង្គ (Kalinga War) របស់អធិរាជអសោក បណ្តាលឱ្យមានការកាប់សម្លាប់រាប់សែននាក់ ធ្វើឱ្យប្រជាជនឥណ្ឌាភៀសខ្លួនមកសុវណ្ណភូមិ។"
+  },
+  {
+    "id": 23,
+    "chapter": 4,
+    "chapterTitle": "ជំពូកទី៤ ៖ ការចាក់ឫសគល់នៃអរិយធម៌ឥណ្ឌានៅអាស៊ីអាគ្នេយ៍",
+    "type": "mcq",
+    "question": "២៣. តើពាក្យថា «ខ្មែរូបនីយកម្ម» (Khmerization) មានន័យដូចម្តេច?",
+    "options": [
+      "ការយកធាតុដើមឥណ្ឌាមកកែច្នៃ និងផ្សំជាមួយវប្បធម៌ដើមខ្មែរ បង្កើតបានជាអរិយធម៌ខ្មែរផ្ទាល់ខ្លួន",
+      "ការបាត់បង់អត្តសញ្ញាណខ្មែរទៅជាឥណ្ឌាទាំងស្រុង",
+      "ការបង្ខំឱ្យឥណ្ឌានិយាយភាសាខ្មែរ",
+      "ការបោះបង់ចោលជំនឿដូនតាខ្មែរទាំងអស់"
+    ],
+    "answer": 0,
+    "explanation": "ខ្មែរមិនទទួលយកឥណ្ឌាដោយខ្វាក់ភ្នែកឡើយ ប៉ុន្តែបាន «ខ្មែរូបនីយកម្ម» កែច្នៃធាតុឥណ្ឌា ផ្សំជាមួយជំនឿដូនតា និងមាតាធិបតេយ្យខ្មែរ។"
+  },
+  {
+    "id": 24,
+    "chapter": 4,
+    "chapterTitle": "ជំពូកទី៤ ៖ ការចាក់ឫសគល់នៃអរិយធម៌ឥណ្ឌានៅអាស៊ីអាគ្នេយ៍",
+    "type": "mcq",
+    "question": "២៤. តើសំពៅជំនួញធំៗរបស់ឥណ្ឌាដែលប្រើសម្រាប់ធ្វើដំណើរឆ្លងកាត់មហាសមុទ្រឥណ្ឌាមានឈ្មោះអ្វី?",
+    "options": [
+      "សំពៅ កូឡា (Kula)",
+      "សំពៅ ទីតានិច",
+      "សំពៅ ហ្វូណន",
+      "សំពៅ កើតកាល"
+    ],
+    "answer": 0,
+    "explanation": "សំពៅ Kula គឺជាសំពៅជំនួញធំៗដែលឥណ្ឌាចេះសង់សម្រាប់ដឹកទំនិញ និងមនុស្សឆ្លងកាត់មហាសមុទ្រឥណ្ឌា។"
+  },
+  {
+    "id": 25,
+    "chapter": 5,
+    "chapterTitle": "ជំពូកទី៥ ៖ ប្រភពនៃប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "២៥. តើសិលាចារឹកខ្មែរបុរាណចាស់ជាងគេបំផុតដែលចារជាភាសាខ្មែរនៅឆ្នាំ ៦១១ គ.ស មានលេខបញ្ជីអ្វី?",
+    "options": [
+      "សិលាចារឹកអង្គបូរី K.600",
+      "សិលាចារឹកប្រាសាទបាយ័ន K.900",
+      "សិលាចារឹកបន្ទាយស្រី K.250",
+      "សិលាចារឹកស្តុកកក់ធំ K.235"
+    ],
+    "answer": 0,
+    "explanation": "សិលាចារឹកអង្គបូរី (K.600) ចារជាភាសាខ្មែរនៅឆ្នាំ ៦១១ គ.ស គឺជាសិលាចារឹកភាសាខ្មែរចាស់ជាងគេបង្អស់ដែលត្រូវបានរកឃើញ។"
+  },
+  {
+    "id": 26,
+    "chapter": 5,
+    "chapterTitle": "ជំពូកទី៥ ៖ ប្រភពនៃប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "២៦. តើកំណត់ហេតុប្រវត្តិសាស្ត្រចិន «ទំនៀមទម្លាប់នៃប្រទេសចេនឡា» ក្នុងឆ្នាំ ១២៩៦-១២៩៧ ជាស្នាដៃរបស់អ្នកណា?",
+    "options": [
+      "លោក កាំង ថៃ (Kang Thai)",
+      "លោក ជីវ តាក្វាន់ (Zhou Daguan / Tcheou Ta Kouan)",
+      "លោក យី ស៊ីង (Yi Tsing)",
+      "លោក ហ៊ួន សាង (Xuanzang)"
+    ],
+    "answer": 1,
+    "explanation": "លោក ជីវ តាក្វាន់ (Zhou Daguan) បានមកដល់អង្គរនៅឆ្នាំ ១២៩៦-១២៩៧ ហើយបានកត់ត្រាយ៉ាងពិស្តារអំពីជីវភាព សង្គម និងរាជវាំងខ្មែរ។"
+  },
+  {
+    "id": 27,
+    "chapter": 5,
+    "chapterTitle": "ជំពូកទី៥ ៖ ប្រភពនៃប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "២៧. តើបេសកជនចិនពីររូបណាខ្លះដែលបានមកដល់អាណាចក្រភ្នំនៅសតវត្សទី៣ ហើយបានសរសេរកំណត់ត្រាអំពីហ្វូណន?",
+    "options": [
+      "លោក កាំង ថៃ (Kang Thai) និង លោក ជូ អ៊ិញ (Zhu Ying)",
+      "លោក ជីវ តាក្វាន់ និង លោក ម៉ៅ សេទុង",
+      "លោក ហ៊ួន សាង និង លោក លី ប៉ាយ",
+      "លោក កុងជឺ និង លោក ឡាវជឺ"
+    ],
+    "answer": 0,
+    "explanation": "លោក កាំង ថៃ និង លោក ជូ អ៊ិញ ត្រូវបានអធិរាជចិនបញ្ជូនមកហ្វូណននៅសតវត្សទី៣ ហើយបានបង្កើតកំណត់ត្រាដំបូងបង្អស់អំពីហ្វូណន។"
+  },
+  {
+    "id": 28,
+    "chapter": 5,
+    "chapterTitle": "ជំពូកទី៥ ៖ ប្រភពនៃប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "២៨. តើប្រភពនៃប្រវត្តិសាស្ត្រខ្មែរត្រូវបានចែកចេញជាប៉ុន្មានប្រភេទធំៗ?",
+    "options": [
+      "២ ប្រភេទ (ប្រភពក្នុងស្រុក និង ប្រភពបរទេស)",
+      "៥ ប្រភេទ",
+      "១០ ប្រភេទ",
+      "គ្មានការបែងចែកទេ"
+    ],
+    "answer": 0,
+    "explanation": "ប្រភពប្រវត្តិសាស្ត្រខ្មែរចែកជា ២ ធំៗ គឺ ប្រភពក្នុងស្រុក (សិលាចារឹក, ស្ថាបត្យកម្ម, រាជពង្សាវតារ, រឿងព្រេង) និង ប្រភពបរទេស (កំណត់ហេតុចិន, អឺរ៉ុប, សៀម)។"
+  },
+  {
+    "id": 29,
+    "chapter": 5,
+    "chapterTitle": "ជំពូកទី៥ ៖ ប្រភពនៃប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "២៩. តើរឿងព្រេងប្រជាប្រិយខ្មែរ (ដូចជា រឿងព្រះថោងនាងនាគ, រឿងធនញ្ជ័យ) ស្ថិតក្នុងប្រភេទប្រភពប្រវត្តិសាស្ត្រណា?",
+    "options": [
+      "ឯកសាររៀបរាប់មាត់ (Oral Tradition / វប្បធម៌អរូបី)",
+      "សិលាចារឹកលើថ្មភក់",
+      "កំណត់ហេតុបរទេស",
+      "រូបថតពីផ្កាយរណប"
+    ],
+    "answer": 0,
+    "explanation": "រឿងព្រេង និងចម្រៀងប្រជាប្រិយ គឺជា «ឯកសាររៀបរាប់មាត់» ដែលឆ្លុះបញ្ចាំងពីជំនឿ និងទស្សនវិជ្ជានៃសង្គមខ្មែរបុរាណ។"
+  },
+  {
+    "id": 30,
+    "chapter": 5,
+    "chapterTitle": "ជំពូកទី៥ ៖ ប្រភពនៃប្រវត្តិសាស្ត្រខ្មែរ",
+    "type": "mcq",
+    "question": "៣០. ហេតុអ្វីបានជាសិលាចារឹកត្រូវគេចាត់ទុកជាប្រភពប្រវត្តិសាស្ត្រដែលមានតម្លៃ និងច្បាស់លាស់បំផុត?",
+    "options": [
+      "ព្រោះវាត្រូវបានចារឹកលើថ្មក្នុងសម័យកាលកើតហេតុផ្ទាល់ មិនងាយកែប្រែ ឬប្រពៃតាមក្រោយ",
+      "ព្រោះសិលាចារឹកមានពណ៌ស្អាត",
+      "ព្រោះសិលាចារឹកសរសេរជាភាសាអង់គ្លេស",
+      "ព្រោះសិលាចារឹកមាននៅគ្រប់ផ្ទះ"
+    ],
+    "answer": 0,
+    "explanation": "សិលាចារឹកជាភស្តុតាងផ្ទាល់ (Primary Source) ចារលើថ្មក្នុងសម័យកាលកើតហេតុ ផ្តល់ព័ត៌មានជាក់លាក់អំពីក្សត្រ សាសនា និងសង្គម។"
+  },
+  {
+    "id": 31,
+    "chapter": 6,
+    "chapterTitle": "ជំពូកទី៦ ៖ សម័យអាណាចក្រភ្នំ (ហ្វូណន - សតវត្សទី១ ដល់ ទី៦ គ.ស)",
+    "type": "mcq",
+    "question": "៣១. ពាក្យថា «ហ្វូណន» (Funan) ដែលកត់ត្រាដោយជនជាតិចិន ក្លាយមកពីពាក្យខ្មែរបុរាណមួយណា?",
+    "options": [
+      "ភ្នំ (Bnam / Phnom)",
+      "ភ្នំពេញ",
+      "ភូមិ",
+      "ភាគត្បូង"
+    ],
+    "answer": 0,
+    "explanation": "អ្នកប្រវត្តិវិទូរកឃើញថា ពាក្យ «ហ្វូណន» គឺជាសំឡេងចិនដែលហៅតាមពាក្យខ្មែរបុរាណ «ភ្នំ» (Bnam) ដែលស្តេចខ្មែរមានងារជា «កុរុងព្នំ» (ស្តេចភ្នំ)។"
+  },
+  {
+    "id": 32,
+    "chapter": 6,
+    "chapterTitle": "ជំពូកទី៦ ៖ សម័យអាណាចក្រភ្នំ (ហ្វូណន - សតវត្សទី១ ដល់ ទី៦ គ.ស)",
+    "type": "mcq",
+    "question": "៣២. តើតួអង្គពីររូបណាខ្លះដែលបានរៀបអភិសេកបង្កើតជារាជវង្សខ្មែរដំបូងគេក្នុងសម័យអាណាចក្រភ្នំ?",
+    "options": [
+      "កៅណ្ឌិន្យ (ហ៊ុន ទៀន) និង នាងលីវយី (ព្រះនាងសោមា / នាងនាគ)",
+      "ជ័យវរ្ម័នទី២ និង ឥន្ទ្រទេវី",
+      "សូរ្យវរ្ម័នទី២ និង ជយរាជទេវី",
+      "ពញាយ៉ាត និង នាងកែវចិន្តា"
+    ],
+    "answer": 0,
+    "explanation": "ព្រាហ្មណ៍ឥណ្ឌា កៅណ្ឌិន្យ (ហ៊ុន ទៀន) បានរៀបអាពាហ៍ពិពាហ៍ជាមួយម្ចាស់ស្រុក នាងលីវយី (ព្រះនាងសោមា) បង្កើតជារាជវង្សខ្មែរដំបូងគេ។"
+  },
+  {
+    "id": 33,
+    "chapter": 6,
+    "chapterTitle": "ជំពូកទី៦ ៖ សម័យអាណាចក្រភ្នំ (ហ្វូណន - សតវត្សទី១ ដល់ ទី៦ គ.ស)",
+    "type": "mcq",
+    "question": "៣៣. តើរាជធានីដំបូងនៃអាណាចក្រភ្នំមានឈ្មោះអ្វី ហើយស្ថិតនៅតំបន់ណា?",
+    "options": [
+      "វ្យាធបុរៈ (ស្ថិតនៅម្តុំបាភ្នំ ខេត្តព្រៃវែង)",
+      "យសោធរបុរៈ (ភ្នំបាខែង)",
+      "ឥសានបុរៈ (សំបូរព្រៃគុក)",
+      "ចតុមុខ (ភ្នំពេញ)"
+    ],
+    "answer": 0,
+    "explanation": "រាជធានីនៃអាណាចក្រភ្នំគឺ «វ្យាធបុរៈ» (ទីក្រុងព្រានព្រៃ) ស្ថិតនៅតំបន់បាភ្នំ ខេត្តព្រៃវែង បច្ចុប្បន្ន។"
+  },
+  {
+    "id": 34,
+    "chapter": 6,
+    "chapterTitle": "ជំពូកទី៦ ៖ សម័យអាណាចក្រភ្នំ (ហ្វូណន - សតវត្សទី១ ដល់ ទី៦ គ.ស)",
+    "type": "mcq",
+    "question": "៣៤. តើកំពង់ផែអន្តរជាតិដ៏ល្បីល្បាញនៃអាណាចក្រភ្នំដែលមានទំនាក់ទំនងជំនួញជាមួយចិន ឥណ្ឌា និងរ៉ូម៉ាំង មានឈ្មោះអ្វី?",
+    "options": [
+      "កំពង់ផែអូរកែវ (Oc Eo)",
+      "កំពង់ផែកំពង់សោម",
+      "កំពង់ផែស្ទឹងត្រែង",
+      "កំពង់ផែបាត់ដំបង"
+    ],
+    "answer": 0,
+    "explanation": "កំពង់ផែអូរកែវ (Oc Eo) ស្ថិតនៅភាគខាងត្បូងភ្នំបាថេ ជាមជ្ឈមណ្ឌលពាណិជ្ជកម្មសមុទ្រអន្តរជាតិដ៏ធំរបស់ហ្វូណន។"
+  },
+  {
+    "id": 35,
+    "chapter": 6,
+    "chapterTitle": "ជំពូកទី៦ ៖ សម័យអាណាចក្រភ្នំ (ហ្វូណន - សតវត្សទី១ ដល់ ទី៦ គ.ស)",
+    "type": "mcq",
+    "question": "៣៥. តើក្សត្រហ្វូណនអង្គណាដែលជាមេទ័ពខ្លាំងពូកែ បង្កើតកងទ័ពជើងទឹក និងទទួលបានងារថា «មហាស្តេចនៃហ្វូណន»?",
+    "options": [
+      "ព្រះបាទស្រីមារៈ (ហ្វាន ស៊ីម៉ាន Fan Shih-man)",
+      "ព្រះបាទភវវរ្ម័នទី១",
+      "ព្រះបាទជ័យវរ្ម័នទី១",
+      "ព្រះបាទរុទ្រវរ្ម័ន"
+    ],
+    "answer": 0,
+    "explanation": "ព្រះបាទស្រីមារៈ (ហ្វាន ស៊ីម៉ាន) ជាមេទ័ពដ៏ខ្លាំងពូកែ បានវាយប្រមូលរដ្ឋជិតខាងជាង ១០ មកជាចំណុះ និងពង្រីកដែនទឹកហ្វូណនយ៉ាងធំធេង។"
+  },
+  {
+    "id": 36,
+    "chapter": 6,
+    "chapterTitle": "ជំពូកទី៦ ៖ សម័យអាណាចក្រភ្នំ (ហ្វូណន - សតវត្សទី១ ដល់ ទី៦ គ.ស)",
+    "type": "mcq",
+    "question": "៣៦. តើព្រះសង្ឃខ្មែរពីរអង្គណាដែលបានយាងទៅកាន់ប្រទេសចិនក្នុងសតវត្សទី៥ ដើម្បីជួយបកប្រែព្រះត្រៃបិដក?",
+    "options": [
+      "ព្រះសង្ឃ សង្ឃបាល និង មន្ទ្រសេន",
+      "ព្រះមហាមោគ្គល្លាន និង ព្រះសារីបុត្ត",
+      "ព្រះជិនវង្ស និង ព្រះធម្មធរ",
+      "ព្រះសង្ឃរាជ ជួន ណាត និង ហួត តាត"
+    ],
+    "answer": 0,
+    "explanation": "ក្នុងរជ្ជកាលព្រះបាទកៅណ្ឌិន្យជ័យវរ្ម័ន ព្រះសង្ឃខ្មែរ សង្ឃបាល និងមន្ទ្រសេន បានយាងទៅចិនដើម្បីបកប្រែក្បួនព្រះត្រៃបិដកពីសំស្ត្រឹតទៅចិន។"
+  },
+  {
+    "id": 37,
+    "chapter": 6,
+    "chapterTitle": "ជំពូកទី៦ ៖ សម័យអាណាចក្រភ្នំ (ហ្វូណន - សតវត្សទី១ ដល់ ទី៦ គ.ស)",
+    "type": "mcq",
+    "question": "៣៧. តើសាសនាធំៗអ្វីខ្លះដែលត្រូវបានគោរពបូជាដោយសន្តិសហវិជ្ជមានក្នុងសម័យហ្វូណន?",
+    "options": [
+      "ព្រហ្មញ្ញសាសនា (សិវនិកាយ & វិស្ណុនិកាយ) និង ព្រះពុទ្ធសាសនា",
+      "សាសនាឥស្លាម និង គ្រិស្តសាសនា",
+      "សាសនាតាវ និង សាសនាស៊ិនតូ",
+      "គ្មានសាសនាណាទាំងអស់"
+    ],
+    "answer": 0,
+    "explanation": "ក្នុងសម័យហ្វូណន ព្រហ្មញ្ញសាសនា និងព្រះពុទ្ធសាសនា ត្រូវបានប្រជាជន និងក្សត្រគោរពបូជាដោយសុខសន្តិភាពជាមួយគ្នា។"
+  },
+  {
+    "id": 38,
+    "chapter": 7,
+    "chapterTitle": "ជំពូកទី៧ ៖ សម័យអាណាចក្រចេនឡា (សតវត្សទី៦ ដល់ ទី៨ គ.ស)",
+    "type": "mcq",
+    "question": "៣៨. តើដែនដីដើមដំបូងនៃអាណាចក្រចេនឡា (មុនពេលរំដោះខ្លួនពីហ្វូណន) ស្ថិតនៅតំបន់ណា?",
+    "options": [
+      "តាមបណ្តោយទន្លេមេគង្គភាគខាងលើ (ម្ដុំវត្តភូ/បាសាក់ ប្រទេសឡាវបច្ចុប្បន្ន)",
+      "តំបន់ភ្នំពេញ",
+      "តំបន់កោះកុង",
+      "តំបន់កែប"
+    ],
+    "answer": 0,
+    "explanation": "ចេនឡាដើមឡើយជារដ្ឋចំណុះហ្វូណន ស្ថិតនៅតាមបណ្តោយទន្លេមេគង្គភាគខាងលើ ម្ដុំវត្តភូ (បាសាក់ ប្រទេសឡាវ)។"
+  },
+  {
+    "id": 39,
+    "chapter": 7,
+    "chapterTitle": "ជំពូកទី៧ ៖ សម័យអាណាចក្រចេនឡា (សតវត្សទី៦ ដល់ ទី៨ គ.ស)",
+    "type": "mcq",
+    "question": "៣៩. តើក្សត្រចេនឡាពីរអង្គណាដែលបានដឹកនាំទ័ពមកវាយរំដោះខ្លួន និងវាយយកអាណាចក្រភ្នំ?",
+    "options": [
+      "ព្រះបាទភវវរ្ម័នទី១ និង អនុជ មហេន្ទ្រវរ្ម័ន (ចិត្តសេន)",
+      "ព្រះបាទជ័យវរ្ម័នទី២ និង ឥន្ទ្រវរ្ម័នទី១",
+      "ព្រះបាទសូរ្យវរ្ម័នទី២ និង ជ័យវរ្ម័នទី៧",
+      "ព្រះបាទពញាយ៉ាត និង ស្រីសុរិយោពណ៌"
+    ],
+    "answer": 0,
+    "explanation": "ព្រះបាទភវវរ្ម័នទី១ និងអនុជ មហេន្ទ្រវរ្ម័ន (ចិត្តសេន) បានលើកទ័ពវាយរំដោះចេនឡា និងវាយយកហ្វូណនជាបន្តបន្ទាប់។"
+  },
+  {
+    "id": 40,
+    "chapter": 7,
+    "chapterTitle": "ជំពូកទី៧ ៖ សម័យអាណាចក្រចេនឡា (សតវត្សទី៦ ដល់ ទី៨ គ.ស)",
+    "type": "mcq",
+    "question": "៤០. តើព្រះបាទឥសានវរ្ម័នទី១ បានកសាងរាជធានី «ឥសានបុរៈ» នៅតំបន់បេតិកភណ្ឌណា?",
+    "options": [
+      "តំបន់ប្រាសាទសំបូរព្រៃគុក (ខេត្តកំពង់ធំ)",
+      "តំបន់ប្រាសាទព្រះវិហារ",
+      "តំបន់បន្ទាយឆ្មារ",
+      "តំបន់កោះកែរ"
+    ],
+    "answer": 0,
+    "explanation": "រាជធានី «ឥសានបុរៈ» កសាងដោយព្រះបាទឥសានវរ្ម័នទី១ បច្ចុប្បន្នជាតំបន់ប្រាសាទសំបូរព្រៃគុក ខេត្តកំពង់ធំ។"
+  },
+  {
+    "id": 41,
+    "chapter": 7,
+    "chapterTitle": "ជំពូកទី៧ ៖ សម័យអាណាចក្រចេនឡា (សតវត្សទី៦ ដល់ ទី៨ គ.ស)",
+    "type": "mcq",
+    "question": "៤១. តើអាណាចក្រចេនឡាត្រូវបែកបាក់ជាពីរ (ចេនឡាដីគោក និង ចេនឡាទឹកលិច) នៅឆ្នាំណា?",
+    "options": [
+      "ឆ្នាំ ៧០៦ គ.ស",
+      "ឆ្នាំ ៨០២ គ.ស",
+      "ឆ្នាំ ៥៥០ គ.ស",
+      "ឆ្នាំ ១៤៣១ គ.ស"
+    ],
+    "answer": 0,
+    "explanation": "នៅឆ្នាំ ៧០៦ គ.ស ចេនឡាបានបែកបាក់ជាពីរ ក្រោយពេលព្រះបាទជ័យវរ្ម័នទី១ សុគត ហើយគ្មានរជ្ជទាយាទប្រុសស្នងរាជ្យ។"
+  },
+  {
+    "id": 42,
+    "chapter": 7,
+    "chapterTitle": "ជំពូកទី៧ ៖ សម័យអាណាចក្រចេនឡា (សតវត្សទី៦ ដល់ ទី៨ គ.ស)",
+    "type": "mcq",
+    "question": "៤២. តើចេនឡាដីគោក (ចិនហៅ វ៉ិនតាន) មានលក្ខណៈភូមិសាស្ត្រ និងសង្គមយ៉ាងដូចម្តេច?",
+    "options": [
+      "ស្ថិតនៅភាគខាងជើង (តំបន់ភ្នំ ជួរភ្នំដងរែក និងឡាវ) សម្បូរព្រៃឈើ/រ៉ែ និងមានសន្តិភាពជាង",
+      "ស្ថិតនៅតាមឆ្នេរសមុទ្រ ជួបសង្គ្រាមរាល់ថ្ងៃ",
+      "ជាដែនកោះនៅកណ្តាលមហាសមុទ្រ",
+      "ជាវាលខ្សាច់គ្មានមនុស្សរស់នៅ"
+    ],
+    "answer": 0,
+    "explanation": "ចេនឡាដីគោក ស្ថិតនៅតំបន់ភ្នំភាគខាងជើង សម្បូរធនធានធម្មជាតិ ព្រៃឈើ រ៉ែ និងមានស្ថិរភាពនយោបាយជាងចេនឡាទឹកលិច។"
+  },
+  {
+    "id": 43,
+    "chapter": 7,
+    "chapterTitle": "ជំពូកទី៧ ៖ សម័យអាណាចក្រចេនឡា (សតវត្សទី៦ ដល់ ទី៨ គ.ស)",
+    "type": "mcq",
+    "question": "៤៣. តើចេនឡាទឹកលិច ជួបប្រទះនូវបញ្ហាប្រឈមធំបំផុតអ្វីខ្លះ?",
+    "options": [
+      "ការបែកបាក់ជាបុរីតូចៗ និងការឈ្លានពានជារឿយៗពីចោរសមុទ្រជ្វា (សៃលេន្ទ្រ)",
+      "គ្រោះរាំងស្ងួតអត់ទឹកប្រើប្រាស់",
+      "ការធ្លាក់ព្រិលទឹកកកខ្លាំង",
+      "ការផ្ទុះភ្នំភ្លើង"
+    ],
+    "answer": 0,
+    "explanation": "ចេនឡាទឹកលិច ស្ថិតនៅតំបន់ទំនាបទន្លេ និងសមុទ្រ រងការបែកបាក់នយោបាយ និងការវាយប្រហារពីចោរសមុទ្រជ្វា។"
+  },
+  {
+    "id": 44,
+    "chapter": 8,
+    "chapterTitle": "ជំពូកទី៨ ៖ សម័យអង្គរ (គ.ស ៨០២ - គ.ស ១៤៣១)",
+    "type": "mcq",
+    "question": "៤៤. តើព្រះមហាក្សត្រអង្គណាដែលបានបង្រួបបង្រួមជាតិ និងបង្កើតសម័យអង្គរនៅឆ្នាំ ៨០២ គ.ស?",
+    "options": [
+      "ព្រះបាទជ័យវរ្ម័នទី២",
+      "ព្រះបាទឥន្ទ្រវរ្ម័នទី១",
+      "ព្រះបាទសូរ្យវរ្ម័នទី២",
+      "ព្រះបាទជ័យវរ្ម័នទី៧"
+    ],
+    "answer": 0,
+    "explanation": "ព្រះបាទជ័យវរ្ម័នទី២ បានបង្រួបបង្រួមចេនឡាដីគោក និងចេនឡាទឹកលិច រួចបង្កើតសម័យអង្គរនៅឆ្នាំ ៨០២ គ.ស។"
+  },
+  {
+    "id": 45,
+    "chapter": 8,
+    "chapterTitle": "ជំពូកទី៨ ៖ សម័យអង្គរ (គ.ស ៨០២ - គ.ស ១៤៣១)",
+    "type": "mcq",
+    "question": "៤៥. តើ «ពិធីទេវរាជ» ត្រូវ បានប្រារព្ធឡើងនៅទីណា ដោយព្រាហ្មណ៍ឈ្មោះអ្វី នៅឆ្នាំ ៨០២?",
+    "options": [
+      "លើភ្នំមហិន្ទ្របព៌ត (ភ្នំគូលែន) ដោយព្រាហ្មណ៍ សិវកៃវល្យ",
+      "លើភ្នំបាខែង ដោយព្រាហ្មណ៍ ទិវាករ",
+      "នៅប្រាសាទអង្គរវត្ត ដោយព្រាហ្មណ៍ វិស្ណុ",
+      "នៅប្រាសាទបាយ័ន ដោយព្រះសង្ឃ សុគន្ធ"
+    ],
+    "answer": 0,
+    "explanation": "ពិធីទេវរាជ ប្រារព្ធលើភ្នំគូលែន (មហិន្ទ្របព៌ត) ដោយព្រាហ្មណ៍សិវកៃវល្យ ដើម្បីប្រកាសឯករាជ្យពីជ្វា និងលើកក្សត្រជាអាទិទេព។"
+  },
+  {
+    "id": 46,
+    "chapter": 8,
+    "chapterTitle": "ជំពូកទី៨ ៖ សម័យអង្គរ (គ.ស ៨០២ - គ.ស ១៤៣១)",
+    "type": "mcq",
+    "question": "៤៦. តើព្រះបាទឥន្ទ្រវរ្ម័នទី១ មានសមិទ្ធផលស្ថាបត្យកម្មសំខាន់ៗអ្វីខ្លះ?",
+    "options": [
+      "កសាងបារាយណ៍ឥន្ទ្រតដាក (បារាយណ៍ឡូលៃ) និង ប្រាសាទបាគង (ប្រាសាទភ្នំថ្មភក់ដំបូង)",
+      "កសាងប្រាសាទអង្គរវត្ត",
+      "កសាងប្រាសាទបាយ័ន",
+      "កសាងប្រាសាទព្រះវិហារ"
+    ],
+    "answer": 0,
+    "explanation": "ព្រះបាទឥន្ទ្រវរ្ម័នទី១ បានកសាងប្រព័ន្ធធារាសាស្ត្របារាយណ៍ឥន្ទ្រតដាក និងប្រាសាទបាគងដែលជាប្រាសាទភ្នំធ្វើពីថ្មភក់ដំបូង។"
+  },
+  {
+    "id": 47,
+    "chapter": 8,
+    "chapterTitle": "ជំពូកទី៨ ៖ សម័យអង្គរ (គ.ស ៨០២ - គ.ស ១៤៣១)",
+    "type": "mcq",
+    "question": "៤៧. តើព្រះបាទយសោវរ្ម័នទី១ បានរំកិលរាជធានីមកតំបន់អង្គរ និងបង្កើតរាជធានីឈ្មោះអ្វីនៅភ្នំបាខែង?",
+    "options": [
+      "យសោធរបុរៈ",
+      "ឥសានបុរៈ",
+      "អង្គរធំ",
+      "វ្យាធបុរៈ"
+    ],
+    "answer": 0,
+    "explanation": "ព្រះបាទយសោវរ្ម័នទី១ បានរំកិលរាជធានីមកតំបន់អង្គរ បង្កើត «យសោធរបុរៈ» ដោយយកភ្នំបាខែងជាចិត្តសាស្ត្ររាជធានី។"
+  },
+  {
+    "id": 48,
+    "chapter": 8,
+    "chapterTitle": "ជំពូកទី៨ ៖ សម័យអង្គរ (គ.ស ៨០២ - គ.ស ១៤៣១)",
+    "type": "mcq",
+    "question": "៤៨. តើព្រះមហាក្សត្រអង្គណាដែលជាស្ថាបនិកកសាង «ប្រាសាទអង្គរវត្ត» ដ៏ស្កឹមស្កៃអស្ចារ្យ?",
+    "options": [
+      "ព្រះបាទសូរ្យវរ្ម័នទី២ (គ.ស ១១១៣-១១៥០)",
+      "ព្រះបាទជ័យវរ្ម័នទី៧",
+      "ព្រះបាទជ័យវរ្ម័នទី២",
+      "ព្រះបាទយសោវរ្ម័នទី១"
+    ],
+    "answer": 0,
+    "explanation": "ព្រះបាទសូរ្យវរ្ម័នទី២ ជាស្ថាបនិកកសាងប្រាសាទអង្គរវត្តនៅដើមសតវត្សទី១២ ដើម្បីឧទ្ទិសថ្វាយព្រះវិស្ណុ។"
+  },
+  {
+    "id": 49,
+    "chapter": 8,
+    "chapterTitle": "ជំពូកទី៨ ៖ សម័យអង្គរ (គ.ស ៨០២ - គ.ស ១៤៣១)",
+    "type": "mcq",
+    "question": "៤៩. តើព្រះបាទជ័យវរ្ម័នទី៧ មានសមិទ្ធផលធំៗអ្វីខ្លះសម្រាប់ជាតិខ្មែរ?",
+    "options": [
+      "រំដោះក្រុងអង្គរពីចាម, កសាងក្រុងអង្គរធំ, ប្រាសាទបាយ័ន, តាព្រហ្ម, ព្រះខ័ន, និងមន្ទីរពេទ្យ ១០២ កន្លែង",
+      "កសាងតែប្រាសាទអង្គរវត្តមួយប៉ុណ្ណោះ",
+      "ធ្វើសង្គ្រាមចាញ់ជ្វា",
+      "បោះបង់ចោលព្រះពុទ្ធសាសនា"
+    ],
+    "answer": 0,
+    "explanation": "ព្រះបាទជ័យវរ្ម័នទី៧ ជាព្រះមហាវីរក្សត្រអស្ចារ្យ បានរំដោះជាតិ កសាងក្រុងអង្គរធំ ប្រាសាទបាយ័ន មន្ទីរពេទ្យ ១០២ និងផ្ទះសំណាក់ ១២១។"
+  },
+  {
+    "id": 50,
+    "chapter": 8,
+    "chapterTitle": "ជំពូកទី៨ ៖ សម័យអង្គរ (គ.ស ៨០២ - គ.ស ១៤៣១)",
+    "type": "mcq",
+    "question": "៥០. តើបុព្វហេតុសំខាន់ៗអ្វីខ្លះដែលនាំឱ្យព្រះបាទពញាយ៉ាតសម្រេចព្រះទ័យបោះបង់ចោលរាជធានីអង្គរនៅឆ្នាំ ១៤៣១?",
+    "options": [
+      "សង្គ្រាមឈ្លានពានជារឿយៗពីសៀម (អយុធ្យា), ការខូចខាតប្រព័ន្ធធារាសាស្ត្រ, និងការប្រែប្រួលសេដ្ឋកិច្ចមកពាណិជ្ជកម្មតាមសមុទ្រ",
+      "ការផ្ទុះជំងឺឆ្លងរាតត្បាតទូទាំងក្រុង",
+      "ការរញ្ជួយដីបំផ្លាញប្រាសាទទាំងអស់",
+      "ការបង្ខំពីសំណាក់ចិន"
+    ],
+    "answer": 0,
+    "explanation": "ការបោះបង់អង្គរឆ្នាំ ១៤៣១ បណ្តាលមកពីការឈ្លានពានពីសៀម ប្រព័ន្ធធារាសាស្ត្រខូចខាត និងការរំកិលសេដ្ឋកិច្ចមកតំបន់ចតុមុខសម្រាប់ពាណិជ្ជកម្មសមុទ្រ។"
+  }
+];
+
+        let currentMode = 'full-lessons';
+        let currentFilter = 'all';
+        let timerInterval;
+        let timeLeft = 3600;
+
+        function renderQuestions() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            const filteredQuestions = examQuestions.filter(q => currentFilter === 'all' || q.chapter === currentFilter);
+
+            filteredQuestions.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                let contentHTML = `
+                    <div class="card-header">
+                        <span class="chapter-badge">${q.chapterTitle}</span>
+                        <span class="q-number">សំណួរទី ${idx + 1} / ${filteredQuestions.length}</span>
+                    </div>
+                    <div class="q-title">${q.question}</div>
+                    <div class="options-group">
+                `;
+
+                q.options.forEach((opt, oIdx) => {
+                    contentHTML += `
+                        <label class="option-item">
+                            <input type="radio" name="q_${q.id}" value="${oIdx}">
+                            <span>${opt}</span>
+                        </label>
+                    `;
+                });
+                contentHTML += `</div>`;
+
+                contentHTML += `
+                    <div class="solution-box" id="sol_${q.id}">
+                        <strong>💡 ចម្លើយត្រឹមត្រូវ៖</strong> ${q.options[q.answer]}<br>
+                        <strong>📌 ការពន្យល់៖</strong> ${q.explanation}
+                    </div>
+                `;
+                card.innerHTML = contentHTML;
+                container.appendChild(card);
+            });
+        }
+
+        function filterFullLesson(chap) {
+            document.querySelectorAll('#section-full-lessons .filter-chip').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const cards = document.querySelectorAll('.chapter-full-card');
+            cards.forEach(card => {
+                const cNum = parseInt(card.getAttribute('data-chap'));
+                if(chap === 'all' || cNum === chap) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function renderGlossary() {
+            const grid = document.getElementById('keyword-grid');
+            grid.innerHTML = '';
+            keywordsData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'kw-card';
+                card.innerHTML = `
+                    <div class="kw-term">📌 ${item.term}</div>
+                    <div class="kw-def">${item.def}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function searchKeywords() {
+            const q = document.getElementById('kw-search').value.toLowerCase();
+            const cards = document.querySelectorAll('.kw-card');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(q) ? 'block' : 'none';
+            });
+        }
+
+        function renderMatching() {
+            const container = document.getElementById('matching-container');
+            container.innerHTML = '';
+            const sampleKeywords = [...keywordsData].sort(() => 0.5 - Math.random()).slice(0, 10);
+            const allTermsList = keywordsData.map(k => k.term).sort();
+
+            sampleKeywords.forEach((item, idx) => {
+                const div = document.createElement('div');
+                div.className = 'matching-item';
+                let optionsHTML = `<option value="">-- ជ្រើសរើសពាក្យគន្លឹះ --</option>`;
+                allTermsList.forEach(t => { optionsHTML += `<option value="${t}">${t}</option>`; });
+
+                div.innerHTML = `
+                    <div class="matching-def">${idx + 1}. ${item.def}</div>
+                    <div>
+                        <select class="matching-select" data-ans="${item.term}">${optionsHTML}</select>
+                        <div class="match-feedback" style="font-size:0.9rem; font-weight:700; margin-top:5px;"></div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function checkMatching() {
+            const selects = document.querySelectorAll('.matching-select');
+            let score = 0;
+            let total = selects.length;
+
+            selects.forEach(sel => {
+                const correct = sel.getAttribute('data-ans');
+                const val = sel.value;
+                const feedback = sel.nextElementSibling;
+
+                if(val === correct) {
+                    score++;
+                    sel.style.borderColor = 'var(--success)';
+                    sel.style.background = '#f0fdf4';
+                    feedback.style.color = 'var(--success)';
+                    feedback.innerText = '✓ ត្រឹមត្រូវ!';
+                } else {
+                    sel.style.borderColor = 'var(--danger)';
+                    sel.style.background = '#fef2f2';
+                    feedback.style.color = 'var(--danger)';
+                    feedback.innerText = `✗ ខុស! ចម្លើយត្រូវគឺ៖ ${correct}`;
+                }
+            });
+
+            document.getElementById('matching-result').style.display = 'block';
+            document.getElementById('matching-score').innerText = `${score}/${total}`;
+            document.getElementById('matching-text').innerHTML = `អ្នកធ្វើត្រូវ <b>${score}</b> ក្នុងចំណោម <b>${total}</b> និយមន័យផ្គូផ្គង!`;
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById('section-full-lessons').style.display = 'none';
+            document.getElementById('section-quiz').style.display = 'none';
+            document.getElementById('section-glossary').style.display = 'none';
+            document.getElementById('section-matching').style.display = 'none';
+
+            if(mode === 'full-lessons') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('section-full-lessons').style.display = 'block';
+                clearInterval(timerInterval);
+            } else if(mode === 'exam') {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('section-quiz').style.display = 'block';
+                document.getElementById('exam-timer').style.display = 'flex';
+                document.getElementById('submit-btn').style.display = 'block';
+                hideSolutions();
+                startTimer();
+            } else if(mode === 'study') {
+                document.querySelectorAll('.tab-btn')[2].classList.add('active');
+                document.getElementById('section-quiz').style.display = 'block';
+                document.getElementById('exam-timer').style.display = 'none';
+                document.getElementById('submit-btn').style.display = 'none';
+                document.getElementById('result-box').style.display = 'none';
+                showSolutions();
+                clearInterval(timerInterval);
+            } else if(mode === 'glossary') {
+                document.querySelectorAll('.tab-btn')[3].classList.add('active');
+                document.getElementById('section-glossary').style.display = 'block';
+                clearInterval(timerInterval);
+                renderGlossary();
+            } else if(mode === 'matching') {
+                document.querySelectorAll('.tab-btn')[4].classList.add('active');
+                document.getElementById('section-matching').style.display = 'block';
+                clearInterval(timerInterval);
+                renderMatching();
+            }
+        }
+
+        function filterChapter(chap) {
+            currentFilter = chap;
+            document.querySelectorAll('#section-quiz .filter-chip').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderQuestions();
+            if(currentMode === 'study') showSolutions();
+        }
+
+        function showSolutions() { document.querySelectorAll('.solution-box').forEach(box => box.style.display = 'block'); }
+        function hideSolutions() { document.querySelectorAll('.solution-box').forEach(box => box.style.display = 'none'); }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 3600;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('clock').innerText = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+
+                if(timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("ផុតម៉ោងប្រឡងហើយ! ប្រព័ន្ធនឹងគណនាលទ្ធផលដោយស្វ័យប្រវត្តិ។");
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function submitExam() {
+            clearInterval(timerInterval);
+            let score = 0;
+            const filteredQuestions = examQuestions.filter(q => currentFilter === 'all' || q.chapter === currentFilter);
+            const total = filteredQuestions.length;
+
+            filteredQuestions.forEach((q) => {
+                const selected = document.querySelector(`input[name="q_${q.id}"]:checked`);
+                if(selected && parseInt(selected.value) === q.answer) score++;
+            });
+
+            showSolutions();
+            document.getElementById('result-box').style.display = 'block';
+            document.getElementById('score-display').innerText = `${score}/${total}`;
+            document.getElementById('result-text').innerHTML = `អ្នកធ្វើត្រូវ <b>${score}</b> ក្នុងចំណោមសំណួរប្រឡង <b>${total}</b> សំណួរ!`;
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        function resetExam() {
+            document.getElementById('result-box').style.display = 'none';
+            renderQuestions();
+            switchMode('exam');
+        }
+
+        // Initialize App
+        renderQuestions();
+    </script>
+</body>
+</html>
